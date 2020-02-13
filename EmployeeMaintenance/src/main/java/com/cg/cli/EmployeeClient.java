@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import com.cg.beans.Employee;
@@ -193,7 +194,30 @@ public class EmployeeClient {
 	 * 
 	 */
 	private static void searchByName() {
-		// TODO Auto-generated method stub
+
+		Scanner console = new Scanner(System.in);
+		String firstName;
+		while(true) {
+			System.out.print("Enter First Name: ");
+			firstName = console.next();
+			if(AdminService.validateName(firstName))
+				break;
+			else 
+				System.out.println("Enter a valid name");
+		}
+		List<Employee> list = employeeService.searchEmployee(firstName);
+		displayList(list);
+		
+	}
+
+	/**
+	 * @param list
+	 */
+	private static void displayList(List<Employee> list) {
+		if(list.size()!=0) {
+			System.out.println("Employees matching the Search Query are");
+			list.forEach(System.out::println);
+		}
 		
 	}
 
