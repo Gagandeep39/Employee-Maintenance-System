@@ -17,6 +17,15 @@ public class LeaveException extends Exception{
 		
 	}
 
+	
+
+	public LeaveException(String arg0) {
+		super(arg0);
+		
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Leave with given ID doesnt exist";

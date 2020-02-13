@@ -128,8 +128,17 @@ public class EmployeeServiceImpl extends UserServiceImpl implements EmployeeServ
 
 	@Override
 	public List<LeaveHistory> showLeaveHistory(int empId) {
-		List<LeaveHistory> history =leaveDao.showAllLeaves().values().stream().filter(h->h.getEmpId()==empId).collect(Collectors.toList());
-		return history;
+		HashMap<Integer, LeaveHistory> history =leaveDao.showAllLeaves();
+		try {
+			if(history.size()==0)
+				throw new LeaveException("Employee has taken no leaves");
+			else {
+				return history.values().stream().filter(h->h.getEmpId()==empId).collect(Collectors.toList());
+			}
+		} catch (LeaveException e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 
 	

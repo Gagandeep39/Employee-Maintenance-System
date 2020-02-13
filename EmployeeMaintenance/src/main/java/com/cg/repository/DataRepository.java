@@ -41,7 +41,7 @@ public class DataRepository {
 		gradeMap = new HashMap<GradeType, Grade>();
 		
 		User u1 = new User("gagandeep", "123456", UserType.Admin);
-		User u2 = new User("pranav", "123456", UserType.Admin);
+		User u2 = new User("pranav", "123456", UserType.Employee);
 		User u3 = new User("palak", "123456", UserType.Admin);
 		User u4 = new User("Tanmay", "123456", UserType.Employee);
 		User u5 = new User("uma", "123456", UserType.Employee);
@@ -51,7 +51,7 @@ public class DataRepository {
 
 			date = LocalDate.parse("1999-05-14");
 		
-		Employee e1 = new Employee(u1.getUserId(), "Gagandeep", "Singh", date, 1002, GradeType.M7, Designation.Manager, 100000, Gender.M, MaritalStatus.Single, "Planet earth", "12345677", 0);
+//		Employee e1 = new Employee(u1.getUserId(), "Gagandeep", "Singh", date, 1002, GradeType.M7, Designation.Manager, 100000, Gender.M, MaritalStatus.Single, "Planet earth", "12345677", 0);
 		Employee e2 = new Employee(u2.getUserId(), "pranav", "Singh", date, 1002, GradeType.M7,Designation.Developer, 100000, Gender.M, MaritalStatus.Single, "Planet earth", "12345677", 1001);
 	
 		
@@ -63,7 +63,7 @@ public class DataRepository {
 		userMap.put(u5.getUserId(), u5);
 		
 		
-		employeeMap.put(e1.getEmpId(), e1);
+//		employeeMap.put(e1.getEmpId(), e1);
 		employeeMap.put(e2.getEmpId(), e2);
 		
 		

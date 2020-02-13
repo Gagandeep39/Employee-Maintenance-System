@@ -3,8 +3,6 @@ package com.cg.beans;
 
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 
 import com.cg.enums.*;
 
@@ -90,6 +88,13 @@ public class LeaveHistory {
 	public void setStatus(LeaveStatus status) {
 		this.status = status;
 	}
+	@Override
+	public String toString() {
+		return "LeaveHistory [leaveId=" + leaveId + ", empId=" + empId + ", leaveBalance=" + leaveBalance
+				+ ", appliedOn=" + appliedOn + ", noOfDaysApplied=" + noOfDaysApplied + ", dateFrom=" + dateFrom
+				+ ", dateTo=" + dateTo + ", status=" + status + "]";
+	}
+	
 	
 	
 

@@ -109,17 +109,19 @@ public class EmployeeClient {
 			System.out.println("*********Employee Menu*********");
 			System.out.println("1. Search for Employee");
 			System.out.println("2. Apply For Leave");
-			System.out.println("3. Log Out");
-			System.out.println("4. Exit");
+			System.out.println("3. Show All Leaves");
+			System.out.println("4. Log Out");
+			System.out.println("5. Exit");
 			int op = console.nextInt();
 			switch (op) {
 			case 1: searchEmployee(empId); break;
 			case 2: applyForLeave(empId); break;
-			case 3:
+			case 3: showAllLeaves(empId); break;
+			case 4:
 			System.out.println("Logging Out");
 			loginSystem();
 			break;
-			case 4: 
+			case 5: 
 				System.out.println("Powering Off...");
 				System.exit(0);
 				break;
@@ -131,13 +133,24 @@ public class EmployeeClient {
 	}
 
 	/**
+	 * @param empId
+	 */
+	private static void showAllLeaves(int empId) {
+		List<LeaveHistory> list = employeeService.showLeaveHistory(empId);
+		if(list!=null) {
+			list.forEach(System.out::println);
+		}
+		
+	}
+
+	/**
 	 * @param empId 
 	 * 
 	 */
 	private static void applyForLeave(int empId) {
 		int leaveBalance = 0;
 		List<LeaveHistory> history = employeeService.showLeaveHistory(empId);
-		if(history.size()==0) {
+		if(history==null) {
 			leaveBalance  =12;
 		}else leaveBalance = history.get(history.size()).getLeaveBalance();
 		int daysRequired = inputLeaveRequired(leaveBalance);
@@ -145,6 +158,8 @@ public class EmployeeClient {
 		LocalDate dateTo = intputDateTo(daysRequired, dateFrom);
 		
 		LeaveHistory leaveHistory = new LeaveHistory(empId, leaveBalance, daysRequired, dateFrom, dateTo, LeaveStatus.Applied);
+		int id = employeeService.applyForLeave(leaveHistory);
+		System.out.println("Successfully created Leave with ID: " + id);
 		
 		
 		
@@ -175,15 +190,15 @@ public class EmployeeClient {
 		while (true) {
 			System.out.println("Enter Start date (yyyy-mm-dd): ");
 			String dob = scanner.next();
-			if (AdminService.validateDate(dob)) {
+//			if (AdminService.validateDate(dob)) {	//needs to be fixed
 					d = LocalDate.parse(dob);
 				
-				if(LocalDate.now().isAfter(d))
+				if(!LocalDate.now().isAfter(d))
 					break;
 				else 
 					System.out.println("Input date must be after Today's date");
-			} else
-				System.out.println("Enter date in valid format!");
+//			} else
+//				System.out.println("Enter date in valid format!");
 		}
 		return d;
 	}
