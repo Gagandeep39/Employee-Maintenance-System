@@ -151,7 +151,7 @@ public class EmployeeClient {
 			System.out.println("7. Log Out");
 			int op = console.nextInt();
 			switch (op) {
-			case 1: searchEmployee(); break;
+			case 1: searchById(); break;
 			case 2: searchByName(); break;
 			case 3: searchByDepartment(); break;
 			case 4: searchByGrade(); break;
@@ -164,6 +164,18 @@ public class EmployeeClient {
 				break;
 			}
 		}
+		
+	}
+
+	/**
+	 * 
+	 */
+	private static void searchById() {
+
+		Scanner console = new Scanner(System.in);
+		int id = console.nextInt();
+		Employee employee =  employeeService.searchEmployee(id);
+		System.out.println(employee);
 		
 	}
 
