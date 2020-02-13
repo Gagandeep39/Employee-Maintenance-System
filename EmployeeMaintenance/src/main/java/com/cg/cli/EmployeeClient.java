@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import com.cg.beans.Employee;
 import com.cg.beans.User;
+import com.cg.enums.Department;
 import com.cg.enums.Designation;
 import com.cg.enums.Gender;
 import com.cg.enums.GradeType;
@@ -170,7 +171,10 @@ public class EmployeeClient {
 	 * 
 	 */
 	private static void searchByMarriage() {
-		// TODO Auto-generated method stub
+		Scanner console = new Scanner(System.in);
+		MaritalStatus status = inputMaritalStatus();
+		List<Employee> list = employeeService.searchEmployee(status);
+		displayList(list);
 		
 	}
 
@@ -178,7 +182,10 @@ public class EmployeeClient {
 	 * 
 	 */
 	private static void searchByGrade() {
-		// TODO Auto-generated method stub
+		Scanner console = new Scanner(System.in);
+		GradeType gradeType = inputGrade();
+		List<Employee> list = employeeService.searchEmployee(gradeType);
+		displayList(list);
 		
 	}
 
@@ -186,8 +193,10 @@ public class EmployeeClient {
 	 * 
 	 */
 	private static void searchByDepartment() {
-		// TODO Auto-generated method stub
-		
+		Scanner console = new Scanner(System.in);
+		int departmentId = inputDepartmentId();
+		List<Employee> list = employeeService.searchEmployee(new Department(departmentId, ""));
+		displayList(list);
 	}
 
 	/**
