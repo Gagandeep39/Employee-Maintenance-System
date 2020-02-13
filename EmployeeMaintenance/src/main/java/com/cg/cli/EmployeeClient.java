@@ -65,12 +65,11 @@ public class EmployeeClient {
 			} catch (InputMismatchException e) {
 				System.out.println(e.getMessage());
 			}
-				System.out.print("Enter Password: ");
-				password = console.next();
-				user = userService.login(userId, password);
-				if (user != null)
-					break;
-			
+			System.out.print("Enter Password: ");
+			password = console.next();
+			user = userService.login(userId, password);
+			if (user != null)
+				break;
 
 		}
 
@@ -88,26 +87,26 @@ public class EmployeeClient {
 	}
 
 	/**
-	 * @param i 
+	 * @param i
 	 * 
 	 */
 	private static void checkManagerOrEmployee(int empId) {
-		
+
 		Employee employee = employeeService.searchEmployee(empId);
-		if(employee.getEmpDesignation()==Designation.Manager)
+		if (employee.getEmpDesignation() == Designation.Manager)
 			showManagerMenu(empId);
-		else 
+		else
 			showEmployeeMenu(empId);
-		
+
 	}
 
 	/**
-	 * @param empId 
+	 * @param empId
 	 * 
 	 */
 	private static void showEmployeeMenu(int empId) {
 		Scanner console = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			System.out.println("*********Employee Menu*********");
 			System.out.println("1. Search for Employee");
 			System.out.println("2. Apply For Leave");
@@ -116,14 +115,20 @@ public class EmployeeClient {
 			System.out.println("5. Exit");
 			int op = console.nextInt();
 			switch (op) {
-			case 1: searchEmployee(empId); break;
-			case 2: applyForLeave(empId); break;
-			case 3: showAllLeaves(empId); break;
+			case 1:
+				searchEmployee(empId);
+				break;
+			case 2:
+				applyForLeave(empId);
+				break;
+			case 3:
+				showAllLeaves(empId);
+				break;
 			case 4:
-			System.out.println("Logging Out");
-			loginSystem();
-			break;
-			case 5: 
+				System.out.println("Logging Out");
+				loginSystem();
+				break;
+			case 5:
 				System.out.println("Powering Off...");
 				System.exit(0);
 				break;
@@ -131,7 +136,7 @@ public class EmployeeClient {
 				break;
 			}
 		}
-		
+
 	}
 
 	/**
@@ -139,39 +144,36 @@ public class EmployeeClient {
 	 */
 	private static void showAllLeaves(int empId) {
 		List<LeaveHistory> list = employeeService.showLeaveHistory(empId);
-		if(list!=null) {
+		if (list != null) {
 			list.forEach(System.out::println);
 		}
-		
+
 	}
 
 	/**
-	 * @param empId 
+	 * @param empId
 	 * 
 	 */
 	private static void applyForLeave(int empId) {
 		int leaveBalance = 0;
 		List<LeaveHistory> history = employeeService.showLeaveHistory(empId);
-		if(history==null) {
-			leaveBalance  =12;
-		}else leaveBalance = history.get(history.size()).getLeaveBalance();
+		if (history == null) {
+			leaveBalance = 12;
+		} else
+			leaveBalance = history.get(history.size()).getLeaveBalance();
 		int daysRequired = inputLeaveRequired(leaveBalance);
 		LocalDate dateFrom = inputDateFrom();
 		LocalDate dateTo = intputDateTo(daysRequired, dateFrom);
-		
-		LeaveHistory leaveHistory = new LeaveHistory(empId, leaveBalance, daysRequired, dateFrom, dateTo, LeaveStatus.Applied);
+
+		LeaveHistory leaveHistory = new LeaveHistory(empId, leaveBalance, daysRequired, dateFrom, dateTo,
+				LeaveStatus.Applied);
 		int id = employeeService.applyForLeave(leaveHistory);
 		System.out.println("Successfully created Leave with ID: " + id);
-		
-		
-		
-		
+
 //		new LeaveHistory(empId, noOfDaysApplied, dateFrom, dateTo, status)
 //		LeaveHistory leaveHistory  = new LeaveHistory(empId, leaveBalance, noOfDaysApplied, dateFrom, dateTo, status)
-		
-	}
 
-	
+	}
 
 	/**
 	 * @param daysRequired
@@ -193,12 +195,12 @@ public class EmployeeClient {
 			System.out.println("Enter Start date (yyyy-mm-dd): ");
 			String dob = scanner.next();
 //			if (AdminService.validateDate(dob)) {	//needs to be fixed
-					d = LocalDate.parse(dob);
-				
-				if(!LocalDate.now().isAfter(d))
-					break;
-				else 
-					System.out.println("Input date must be after Today's date");
+			d = LocalDate.parse(dob);
+
+			if (!LocalDate.now().isAfter(d))
+				break;
+			else
+				System.out.println("Input date must be after Today's date");
 //			} else
 //				System.out.println("Enter date in valid format!");
 		}
@@ -206,15 +208,15 @@ public class EmployeeClient {
 	}
 
 	/**
-	 * @param history 
-	 * @param leaveRequired 
+	 * @param history
+	 * @param leaveRequired
 	 * @return
 	 */
 	private static int inputLeaveBalance(int leaveRequired, LeaveHistory history) {
-		if(history==null)
-			return 12-leaveRequired;
-		else 
-			return history.getLeaveBalance()-leaveRequired;
+		if (history == null)
+			return 12 - leaveRequired;
+		else
+			return history.getLeaveBalance() - leaveRequired;
 	}
 
 	/**
@@ -224,16 +226,16 @@ public class EmployeeClient {
 	private static int inputLeaveRequired(int leaveBalance) {
 		int leaveRequired;
 		Scanner console = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			System.out.print("Enter number of days: ");
 			leaveRequired = console.nextInt();
-			if(leaveRequired<=leaveBalance)
+			if (leaveRequired <= leaveBalance)
 				break;
-			else 
+			else
 				System.out.println("Insufficient Leaves");
-			
-			}
-			return leaveRequired;
+
+		}
+		return leaveRequired;
 	}
 
 	/**
@@ -242,7 +244,7 @@ public class EmployeeClient {
 	private static void searchEmployee(int empId) {
 
 		Scanner console = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			System.out.println("*********Employee Search*********");
 			System.out.println("1. Search By Id");
 			System.out.println("2. Search By Name");
@@ -253,20 +255,34 @@ public class EmployeeClient {
 			System.out.println("7. Log Out");
 			int op = console.nextInt();
 			switch (op) {
-			case 1: searchById(); break;
-			case 2: searchByName(); break;
-			case 3: searchByDepartment(); break;
-			case 4: searchByGrade(); break;
-			case 5: searchByMarriage(); break;
-			case 6: showEmployeeMenu(empId); break;
-			case 7: System.exit(0); break;
+			case 1:
+				searchById();
+				break;
+			case 2:
+				searchByName();
+				break;
+			case 3:
+				searchByDepartment();
+				break;
+			case 4:
+				searchByGrade();
+				break;
+			case 5:
+				searchByMarriage();
+				break;
+			case 6:
+				showEmployeeMenu(empId);
+				break;
+			case 7:
+				System.exit(0);
+				break;
 
 			default:
 				System.out.println("Enter a valid Selection");
 				break;
 			}
 		}
-		
+
 	}
 
 	/**
@@ -276,9 +292,9 @@ public class EmployeeClient {
 
 		Scanner console = new Scanner(System.in);
 		int id = console.nextInt();
-		Employee employee =  employeeService.searchEmployee(id);
+		Employee employee = employeeService.searchEmployee(id);
 		System.out.println(employee);
-		
+
 	}
 
 	/**
@@ -289,7 +305,7 @@ public class EmployeeClient {
 		MaritalStatus status = inputMaritalStatus();
 		List<Employee> list = employeeService.searchEmployee(status);
 		displayList(list);
-		
+
 	}
 
 	/**
@@ -300,7 +316,7 @@ public class EmployeeClient {
 		GradeType gradeType = inputGrade();
 		List<Employee> list = employeeService.searchEmployee(gradeType);
 		displayList(list);
-		
+
 	}
 
 	/**
@@ -320,37 +336,37 @@ public class EmployeeClient {
 
 		Scanner console = new Scanner(System.in);
 		String firstName;
-		while(true) {
+		while (true) {
 			System.out.print("Enter First Name: ");
 			firstName = console.next();
-			if(AdminService.validateName(firstName))
+			if (AdminService.validateName(firstName))
 				break;
-			else 
+			else
 				System.out.println("Enter a valid name");
 		}
 		List<Employee> list = employeeService.searchEmployee(firstName);
 		displayList(list);
-		
+
 	}
 
 	/**
 	 * @param list
 	 */
 	private static void displayList(List<Employee> list) {
-		if(list.size()!=0) {
+		if (list.size() != 0) {
 			System.out.println("Employees matching the Search Query are");
 			list.forEach(System.out::println);
 		}
-		
+
 	}
 
 	/**
-	 * @param empId 
+	 * @param empId
 	 * 
 	 */
 	private static void showManagerMenu(int empId) {
 		Scanner console = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			System.out.println("*********Employee Menu*********");
 			System.out.println("1. Search for Employee");
 			System.out.println("2. Apply For Leave");
@@ -360,17 +376,23 @@ public class EmployeeClient {
 			System.out.println("6. Exit");
 			int op = console.nextInt();
 			switch (op) {
-			case 1: searchEmployee(empId); break;
-			case 2: applyForLeave(empId); break;
-			case 3: showAllLeaves(empId); break;
-			case 4: 
-			approveLeave(empId);
-			break;
+			case 1:
+				searchEmployee(empId);
+				break;
+			case 2:
+				applyForLeave(empId);
+				break;
+			case 3:
+				showAllLeaves(empId);
+				break;
+			case 4:
+				approveLeave(empId);
+				break;
 			case 5:
-			System.out.println("Logging Out");
-			loginSystem();
-			break;
-			case 6: 
+				System.out.println("Logging Out");
+				loginSystem();
+				break;
+			case 6:
 				System.out.println("Powering Off...");
 				System.exit(0);
 				break;
@@ -378,11 +400,11 @@ public class EmployeeClient {
 				break;
 			}
 		}
-		
+
 	}
 
 	/**
-	 * @param managerId 
+	 * @param managerId
 	 * 
 	 */
 	private static void approveLeave(int managerId) {
@@ -390,21 +412,21 @@ public class EmployeeClient {
 		int leaveId = 0;
 		HashMap<Integer, LeaveHistory> leaveHisoryList = managerService.showAllLeavesOfSubEmployees(managerId);
 		System.out.println("Main: " + leaveHisoryList.size());
-		if(leaveHisoryList.isEmpty())
+		if (leaveHisoryList.isEmpty())
 			System.out.println("No leave requested");
 		else {
-			leaveHisoryList.values().forEach(l->{
-				System.out.println("HI"  +l);
+			leaveHisoryList.values().forEach(l -> {
+				System.out.println("HI" + l);
 			});
 		}
-		while(true) {
+		while (true) {
 			System.out.println("Enter Leave ID: ");
 			leaveId = console.nextInt();
-			if(leaveHisoryList.get(leaveId)!=null) {
+			if (leaveHisoryList.get(leaveId) != null) {
 				break;
-			}
-			else System.out.println("Enter a valid Leave ID");
-			
+			} else
+				System.out.println("Enter a valid Leave ID");
+
 		}
 		managerService.approveLeave(leaveId);
 	}
@@ -776,7 +798,7 @@ public class EmployeeClient {
 			System.out.println("Enter Date of Birth: ");
 			String dob = scanner.next();
 			if (AdminService.validateDate(dob)) {
-					d = LocalDate.parse(dob);
+				d = LocalDate.parse(dob);
 				break;
 			} else
 				System.out.println("Enter date in valid format!");
