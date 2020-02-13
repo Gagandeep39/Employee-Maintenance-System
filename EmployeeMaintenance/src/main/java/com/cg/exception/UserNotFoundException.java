@@ -18,4 +18,10 @@ public class UserNotFoundException extends Exception {
 		return "User not found";
 	}
 
+	public UserNotFoundException(String arg0) {
+		super(arg0);
+		
+	}
+
+	
 }
