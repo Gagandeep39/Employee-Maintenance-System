@@ -18,6 +18,7 @@ import com.cg.enums.*;
 public class LeaveHistory {
 	
 	public static final int LEAVE_ID_INIT = 1001;
+	public static final int DEFAULT_LEAVE_BAL = 12;
 	static int leaveIdAutoGen;
 	static {
 		leaveIdAutoGen = LEAVE_ID_INIT;
@@ -31,12 +32,12 @@ public class LeaveHistory {
 	private Date dateFrom;
 	private Date dateTo;
 	private LeaveStatus status;
-	public LeaveHistory(int empId, int leaveBalance, int noOfDaysApplied, Date dateFrom, Date dateTo,
+	public LeaveHistory(int empId, int noOfDaysApplied, Date dateFrom, Date dateTo,
 			LeaveStatus status) {
 		super();
 		this.leaveId = leaveIdAutoGen++;
 		this.empId = empId;
-		this.leaveBalance = leaveBalance;
+		this.leaveBalance = DEFAULT_LEAVE_BAL;
 		this.noOfDaysApplied = noOfDaysApplied;
 		this.dateFrom = dateFrom;
 		this.dateTo = dateTo;
