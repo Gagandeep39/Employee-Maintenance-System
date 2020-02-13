@@ -1,7 +1,9 @@
 
 package com.cg.beans;
 
-import java.sql.Date;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import com.cg.enums.*;
 
@@ -28,6 +30,7 @@ public class LeaveHistory {
 	private int leaveId;
 	private int empId;
 	private int leaveBalance;
+	private Date appliedOn;
 	private int noOfDaysApplied;
 	private Date dateFrom;
 	private Date dateTo;
@@ -38,6 +41,7 @@ public class LeaveHistory {
 		this.leaveId = leaveIdAutoGen++;
 		this.empId = empId;
 		this.leaveBalance = DEFAULT_LEAVE_BAL;
+		this.appliedOn = Calendar.getInstance().getTime();
 		this.noOfDaysApplied = noOfDaysApplied;
 		this.dateFrom = dateFrom;
 		this.dateTo = dateTo;
