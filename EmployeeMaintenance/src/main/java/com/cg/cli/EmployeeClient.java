@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.cg.beans.Employee;
+import com.cg.beans.LeaveHistory;
 import com.cg.beans.User;
 import com.cg.enums.Department;
 import com.cg.enums.Designation;
@@ -89,16 +90,17 @@ public class EmployeeClient {
 		
 		Employee employee = employeeService.searchEmployee(empId);
 		if(employee.getEmpDesignation()==Designation.Manager)
-			showManagerMenu();
+			showManagerMenu(empId);
 		else 
-			showEmployeeMenu();
+			showEmployeeMenu(empId);
 		
 	}
 
 	/**
+	 * @param empId 
 	 * 
 	 */
-	private static void showEmployeeMenu() {
+	private static void showEmployeeMenu(int empId) {
 		Scanner console = new Scanner(System.in);
 		while(true) {
 			System.out.println("*********Employee Menu*********");
@@ -108,8 +110,8 @@ public class EmployeeClient {
 			System.out.println("4. Exit");
 			int op = console.nextInt();
 			switch (op) {
-			case 1: searchEmployee(); break;
-			case 2: applyForLeave(); break;
+			case 1: searchEmployee(empId); break;
+			case 2: applyForLeave(empId); break;
 			case 3:
 			System.out.println("Logging Out");
 			loginSystem();
@@ -126,20 +128,24 @@ public class EmployeeClient {
 	}
 
 	/**
+	 * @param empId 
 	 * 
 	 */
-	private static void applyForLeave() {
-		// TODO Auto-generated method stub
+	private static void applyForLeave(int empId) {
+		
+		
+		
+		
+//		LeaveHistory leaveHistory  = new LeaveHistory(empId, leaveBalance, noOfDaysApplied, dateFrom, dateTo, status)
 		
 	}
 
 	/**
 	 * 
 	 */
-	private static void searchEmployee() {
+	private static void searchEmployee(int empId) {
 
 		Scanner console = new Scanner(System.in);
-		int empId;
 		while(true) {
 			System.out.println("*********Employee Search*********");
 			System.out.println("1. Search By Id");
@@ -156,7 +162,7 @@ public class EmployeeClient {
 			case 3: searchByDepartment(); break;
 			case 4: searchByGrade(); break;
 			case 5: searchByMarriage(); break;
-			case 6: showEmployeeMenu(); break;
+			case 6: showEmployeeMenu(empId); break;
 			case 7: System.exit(0); break;
 
 			default:
@@ -243,9 +249,10 @@ public class EmployeeClient {
 	}
 
 	/**
+	 * @param empId 
 	 * 
 	 */
-	private static void showManagerMenu() {
+	private static void showManagerMenu(int empId) {
 		// TODO Auto-generated method stub
 		
 	}
