@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.HiddenAction;
+
 import com.cg.beans.Employee;
 import com.cg.beans.LeaveHistory;
 import com.cg.dao.DaoImpl;
@@ -122,6 +124,12 @@ public class EmployeeServiceImpl extends UserServiceImpl implements EmployeeServ
 		int x = leaveDao.createLeave(l);
 		System.out.println("Success created leave with id " + x + " for employee " + l.getEmpId());
 		return l.getEmpId();
+	}
+
+	@Override
+	public List<LeaveHistory> showLeaveHistory(int empId) {
+		List<LeaveHistory> history =leaveDao.showAllLeaves().values().stream().filter(h->h.getEmpId()==empId).collect(Collectors.toList());
+		return history;
 	}
 
 	

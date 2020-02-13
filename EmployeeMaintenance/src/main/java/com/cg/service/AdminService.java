@@ -40,7 +40,7 @@ public interface AdminService {
 	String namePattern = "[A-Za-z]{4,}";
 	String mobilePattern = "[7-9][0-9]{9}";
 	String emailPattern = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
-	String datePattern = "^\\d{1,2}-\\d{1,2}-\\d{4}$";	// '\\d'-> represents digit
+	String datePattern = "^\\d{4}$-\\d{1,2}-\\d{1,2}";	// '\\d'-> represents digit
 	String departmentPattern = "[1]";
 
 	static boolean validateName(String name) {

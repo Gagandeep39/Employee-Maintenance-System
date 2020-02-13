@@ -32,8 +32,8 @@ public class Employee {
 	private int empId;
 	private String empFirstName;
 	private String empLastName;
-	private Date empDateOfBirth;
-	private Date dateOfJoining;
+	private LocalDate empDateOfBirth;
+	private LocalDate dateOfJoining;
 	private int empDepartmentId;
 	private GradeType empGrade;
 	private Designation empDesignation;
@@ -45,7 +45,7 @@ public class Employee {
 	private int managerId;
 	
 	
-	public Employee(int empId, String empFirstName, String empLastName, Date empDateOfBirth,
+	public Employee(int empId, String empFirstName, String empLastName, LocalDate empDateOfBirth,
 			int empDepartmentId, GradeType empGrade, Designation empDesignation, int empBasic, Gender empGender,
 			MaritalStatus empMaritalStatus, String empHomeAddress, String empContactNumber, int managerId) {
 		super();
@@ -53,7 +53,7 @@ public class Employee {
 		this.empFirstName = empFirstName;
 		this.empLastName = empLastName;
 		this.empDateOfBirth = empDateOfBirth;
-		this.dateOfJoining = Calendar.getInstance().getTime();
+		this.dateOfJoining = LocalDate.now();
 		this.empDepartmentId = empDepartmentId;
 		this.empGrade = empGrade;
 		this.empDesignation = empDesignation;
@@ -82,16 +82,16 @@ public class Employee {
 	public void setEmpLastName(String empLastName) {
 		this.empLastName = empLastName;
 	}
-	public Date getEmpDateOfBirth() {
+	public LocalDate getEmpDateOfBirth() {
 		return empDateOfBirth;
 	}
-	public void setEmpDateOfBirth(Date empDateOfBirth) {
+	public void setEmpDateOfBirth(LocalDate empDateOfBirth) {
 		this.empDateOfBirth = empDateOfBirth;
 	}
-	public Date getDateOfJoining() {
+	public LocalDate getDateOfJoining() {
 		return dateOfJoining;
 	}
-	public void setDateOfJoining(Date dateOfJoining) {
+	public void setDateOfJoining(LocalDate dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
 	}
 	public int getEmpDepartmentId() {

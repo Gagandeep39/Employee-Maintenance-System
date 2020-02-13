@@ -23,6 +23,10 @@ public interface EmployeeService {
 	List<Employee> searchEmployee(MaritalStatus m);
 	List<Employee> showAllEmployees();
 	int applyForLeave(LeaveHistory l);
+	List<LeaveHistory> showLeaveHistory(int empId);
+	
+	
+
 	
 	
 

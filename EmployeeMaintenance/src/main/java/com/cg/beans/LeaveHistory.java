@@ -2,6 +2,7 @@
 package com.cg.beans;
 
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,18 +31,18 @@ public class LeaveHistory {
 	private int leaveId;
 	private int empId;
 	private int leaveBalance;
-	private Date appliedOn;
+	private LocalDate appliedOn;
 	private int noOfDaysApplied;
-	private Date dateFrom;
-	private Date dateTo;
+	private LocalDate dateFrom;
+	private LocalDate dateTo;
 	private LeaveStatus status;
-	public LeaveHistory(int empId, int noOfDaysApplied, Date dateFrom, Date dateTo,
+	public LeaveHistory(int empId, int leaveBalance, int noOfDaysApplied, LocalDate dateFrom, LocalDate dateTo,
 			LeaveStatus status) {
 		super();
 		this.leaveId = leaveIdAutoGen++;
 		this.empId = empId;
 		this.leaveBalance = DEFAULT_LEAVE_BAL;
-		this.appliedOn = Calendar.getInstance().getTime();
+		this.appliedOn = LocalDate.now();
 		this.noOfDaysApplied = noOfDaysApplied;
 		this.dateFrom = dateFrom;
 		this.dateTo = dateTo;
@@ -71,16 +72,16 @@ public class LeaveHistory {
 	public void setNoOfDaysApplied(int noOfDaysApplied) {
 		this.noOfDaysApplied = noOfDaysApplied;
 	}
-	public Date getDateFrom() {
+	public LocalDate getDateFrom() {
 		return dateFrom;
 	}
-	public void setDateFrom(Date dateFrom) {
+	public void setDateFrom(LocalDate dateFrom) {
 		this.dateFrom = dateFrom;
 	}
-	public Date getDateTo() {
+	public LocalDate getDateTo() {
 		return dateTo;
 	}
-	public void setDateTo(Date dateTo) {
+	public void setDateTo(LocalDate dateTo) {
 		this.dateTo = dateTo;
 	}
 	public LeaveStatus getStatus() {

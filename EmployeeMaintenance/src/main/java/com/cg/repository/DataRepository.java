@@ -3,6 +3,7 @@ package com.cg.repository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -45,14 +46,10 @@ public class DataRepository {
 		User u4 = new User("Tanmay", "123456", UserType.Employee);
 		User u5 = new User("uma", "123456", UserType.Employee);
 		
-		Date date = null;
+		LocalDate date = null;
 		
-		try {
-			date = new SimpleDateFormat("dd-mm-yyyy").parse("14-05-1999");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+			date = LocalDate.parse("1999-05-14");
 		
 		Employee e1 = new Employee(u1.getUserId(), "Gagandeep", "Singh", date, 1002, GradeType.M7, Designation.Manager, 100000, Gender.M, MaritalStatus.Single, "Planet earth", "12345677", 0);
 		Employee e2 = new Employee(u2.getUserId(), "pranav", "Singh", date, 1002, GradeType.M7,Designation.Developer, 100000, Gender.M, MaritalStatus.Single, "Planet earth", "12345677", 1001);

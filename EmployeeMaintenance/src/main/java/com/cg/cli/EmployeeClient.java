@@ -3,6 +3,8 @@ package com.cg.cli;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -15,6 +17,7 @@ import com.cg.enums.Department;
 import com.cg.enums.Designation;
 import com.cg.enums.Gender;
 import com.cg.enums.GradeType;
+import com.cg.enums.LeaveStatus;
 import com.cg.enums.MaritalStatus;
 import com.cg.enums.UserType;
 import com.cg.service.AdminService;
@@ -132,12 +135,88 @@ public class EmployeeClient {
 	 * 
 	 */
 	private static void applyForLeave(int empId) {
+		int leaveBalance = 0;
+		List<LeaveHistory> history = employeeService.showLeaveHistory(empId);
+		if(history.size()==0) {
+			leaveBalance  =12;
+		}else leaveBalance = history.get(history.size()).getLeaveBalance();
+		int daysRequired = inputLeaveRequired(leaveBalance);
+		LocalDate dateFrom = inputDateFrom();
+		LocalDate dateTo = intputDateTo(daysRequired, dateFrom);
+		
+		LeaveHistory leaveHistory = new LeaveHistory(empId, leaveBalance, daysRequired, dateFrom, dateTo, LeaveStatus.Applied);
 		
 		
 		
 		
+//		new LeaveHistory(empId, noOfDaysApplied, dateFrom, dateTo, status)
 //		LeaveHistory leaveHistory  = new LeaveHistory(empId, leaveBalance, noOfDaysApplied, dateFrom, dateTo, status)
 		
+	}
+
+	
+
+	/**
+	 * @param daysRequired
+	 * @param dateFrom
+	 * @return
+	 */
+	private static LocalDate intputDateTo(int daysRequired, LocalDate dateFrom) {
+		LocalDate date = dateFrom.plusDays(daysRequired);
+		return date;
+	}
+
+	/**
+	 * @return
+	 */
+	private static LocalDate inputDateFrom() {
+		LocalDate d = null;
+		Scanner scanner = new Scanner(System.in);
+		while (true) {
+			System.out.println("Enter Start date (yyyy-mm-dd): ");
+			String dob = scanner.next();
+			if (AdminService.validateDate(dob)) {
+					d = LocalDate.parse(dob);
+				
+				if(LocalDate.now().isAfter(d))
+					break;
+				else 
+					System.out.println("Input date must be after Today's date");
+			} else
+				System.out.println("Enter date in valid format!");
+		}
+		return d;
+	}
+
+	/**
+	 * @param history 
+	 * @param leaveRequired 
+	 * @return
+	 */
+	private static int inputLeaveBalance(int leaveRequired, LeaveHistory history) {
+		if(history==null)
+			return 12-leaveRequired;
+		else 
+			return history.getLeaveBalance()-leaveRequired;
+	}
+
+	/**
+	 * @param empId
+	 * @return
+	 */
+	private static int inputLeaveRequired(int leaveBalance) {
+		int leaveRequired;
+		Scanner console = new Scanner(System.in);
+		while(true) {
+			System.out.print("Enter number of days: ");
+			leaveRequired = console.nextInt();
+			if(leaveRequired<=leaveBalance)
+				break;
+			else 
+				System.out.println("Insufficient Leaves");
+			
+			}
+			return leaveRequired;
 	}
 
 	/**
@@ -362,7 +441,7 @@ public class EmployeeClient {
 		System.out.println("*********Fill Employee Information*********");
 		String firstName = inputFirstName();
 		String lastName = inputLastName();
-		Date dateOfBirth = inputDoB();
+		LocalDate dateOfBirth = inputDoB();
 		int departmentId = inputDepartmentId();
 		GradeType empGrade = inputGrade();
 		Designation designation = inputDesignation();
@@ -617,18 +696,14 @@ public class EmployeeClient {
 	/**
 	 * @return
 	 */
-	private static Date inputDoB() {
-		Date d = null;
+	private static LocalDate inputDoB() {
+		LocalDate d = null;
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
 			System.out.println("Enter Date of Birth: ");
 			String dob = scanner.next();
 			if (AdminService.validateDate(dob)) {
-				try {
-					d = new SimpleDateFormat("dd-mm-yyyy").parse(dob);
-				} catch (ParseException e) {
-					System.out.println(e);
-				}
+					d = LocalDate.parse(dob);
 				break;
 			} else
 				System.out.println("Enter date in valid format!");
