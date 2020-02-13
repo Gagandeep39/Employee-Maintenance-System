@@ -58,32 +58,52 @@ public class EmployeeServiceImpl extends UserServiceImpl implements EmployeeServ
 	@Override
 	public List<Employee> searchEmployee(String name) {
 		List<Employee> list = employeeDao.searchEmployee(name);
-		if(list.size()==0)
-			System.out.println("No employees with name: " + name + " found.");
+		try {
+			if(list.size()==0)
+				throw new UserNotFoundException("No employees with name: " + name + " found.");
+			else return list;
+		} catch (UserNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
 		return list;
 	}
 
 	@Override
 	public List<Employee> searchEmployee(Department d) {
 		List<Employee> list = employeeDao.searchEmployee(d);
-		if(list.size()==0)
-			System.out.println("No employees with name: " + d + " found.");
+		try {
+			if(list.size()==0)
+				throw new UserNotFoundException("No employees with Department: " + d.getDepartmentId() + " found.");
+			return list;
+		} catch (UserNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
 		return list;
 	}
 
 	@Override
 	public List<Employee> searchEmployee(GradeType g) {
 		List<Employee> list = employeeDao.searchEmployee(g);
-		if(list.size()==0)
-			System.out.println("No employees with name: " + g + " found.");
+		try {
+			if(list.size()==0)
+				throw new UserNotFoundException("No employees with GradeType: " + g + " found.");
+			return list;
+		} catch (UserNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
 		return list;
 	}
 
 	@Override
 	public List<Employee> searchEmployee(MaritalStatus m) {
 		List<Employee> list = employeeDao.searchEmployee(m);
-		if(list.size()==0)
-			System.out.println("No employees with name: " + m + " found.");
+		try {
+			if(list.size()==0)
+				throw new UserNotFoundException("No employees with Marital Status: " + m + " found.");
+			return list;
+		} catch (UserNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
 		return list;
 	}
 
