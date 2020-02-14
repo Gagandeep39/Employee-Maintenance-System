@@ -54,9 +54,7 @@ public class DataRepository {
 		
 
 			date = LocalDate.parse("1999-05-14");
-		System.out.println(u3.getUserId());
-//		Employee e1 = new Employee(u1.getUserId(), "Gagandeep", "Singh", date, 1002, GradeType.M7, Designation.Manager, 100000, Gender.M, MaritalStatus.Single, "Planet earth", "12345677", 0);
-		Employee e2 = new Employee(u2.getUserId(), "pranav", "Singh", date, 1002, GradeType.M7,Designation.Developer, 100000, Gender.M, MaritalStatus.Single, "Planet earth", "12345677", 1003);
+			Employee e2 = new Employee(u2.getUserId(), "pranav", "Singh", date, 1002, GradeType.M7,Designation.Developer, 100000, Gender.M, MaritalStatus.Single, "Planet earth", "12345677", 1003);
 		Employee e3 = new Employee(u3.getUserId(), "Gagandeep", "Singh", date, 1002, GradeType.M7,Designation.Manager, 100000, Gender.M, MaritalStatus.Single, "Planet earth", "12345677", 0);
 		
 		

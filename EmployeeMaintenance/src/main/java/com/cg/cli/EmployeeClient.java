@@ -40,7 +40,6 @@ public class EmployeeClient {
 
 	public static void main(String[] args) {
 		loginSystem();
-
 	}
 
 	/**
@@ -152,10 +151,10 @@ public class EmployeeClient {
 	private static void applyForLeave(int empId) {
 		int leaveBalance = 0;
 		List<LeaveHistory> history = employeeService.showLeaveHistory(empId);
-		if (history == null) {
+		if (history == null || history.size()==0) {
 			leaveBalance = 12;
 		} else
-			leaveBalance = history.get(history.size()).getLeaveBalance();
+			leaveBalance = history.get(history.size()-1).getLeaveBalance();
 		int daysRequired = inputLeaveRequired(leaveBalance);
 		LocalDate dateFrom = inputDateFrom();
 		LocalDate dateTo = intputDateTo(daysRequired, dateFrom);
@@ -523,7 +522,6 @@ public class EmployeeClient {
 	 */
 	private static void addEmployee() {
 		Scanner console = new Scanner(System.in);
-
 		// Employee Info
 		System.out.println("*********Fill Employee Information*********");
 		String firstName = inputFirstName();
@@ -789,11 +787,11 @@ public class EmployeeClient {
 		while (true) {
 			System.out.println("Enter Date of Birth: ");
 			String dob = scanner.next();
-			if (AdminService.validateDate(dob)) {
+//			if (AdminService.validateDate(dob)) {
 				d = LocalDate.parse(dob);
 				break;
-			} else
-				System.out.println("Enter date in valid format!");
+//			} else
+//				System.out.println("Enter date in valid format!");
 		}
 		return d;
 
