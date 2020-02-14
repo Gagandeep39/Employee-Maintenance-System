@@ -27,19 +27,17 @@ import com.cg.exception.UserNotFoundException;
  */
 public class EmployeeServiceImpl extends UserServiceImpl implements EmployeeService{
 
-	EmployeeDao employeeDao;
-	LeaveDao leaveDao;
-	UserDao userDao;
+	private EmployeeDao employeeDao;
+	private LeaveDao leaveDao;
+	private UserDao userDao;
 	
-	
-	DaoImpl impl ;
 	/**
 	 * 
 	 */
 	public EmployeeServiceImpl() {
-		employeeDao = new DaoImpl();
-		leaveDao = new DaoImpl();
-		userDao = new DaoImpl();
+		employeeDao = DaoImpl.getDaoImpl();
+		leaveDao = DaoImpl.getDaoImpl();
+		userDao = DaoImpl.getDaoImpl();
 	}
 
 	@Override

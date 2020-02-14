@@ -22,8 +22,8 @@ public class AdminServiceImpl extends UserServiceImpl implements AdminService {
 	private EmployeeDao employeeDao;
 
 	public AdminServiceImpl() {
-		userDao = new DaoImpl();
-		employeeDao = new DaoImpl();
+		userDao = DaoImpl.getDaoImpl();
+		employeeDao = DaoImpl.getDaoImpl();
 	}
 
 	// Ensure that the employee is created with same id as userId

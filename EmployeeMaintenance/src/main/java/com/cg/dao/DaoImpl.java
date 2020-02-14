@@ -24,8 +24,15 @@ public class DaoImpl implements UserDao, EmployeeDao, LeaveDao {
 	private HashMap<Integer, User> userMap;
 	private HashMap<Integer, Employee> employeeMap;
 	private HashMap<Integer, LeaveHistory> leaveMap;
+	static DaoImpl d;
 	
-	public DaoImpl() {
+	public static DaoImpl getDaoImpl() {
+		if(d==null)
+			d = new DaoImpl();
+		return d;
+	}
+	
+	private DaoImpl() {
 		userMap = DataRepository.getUserList();
 		employeeMap = DataRepository.getEmployeeList();
 		leaveMap = DataRepository.getLeaveMap();
