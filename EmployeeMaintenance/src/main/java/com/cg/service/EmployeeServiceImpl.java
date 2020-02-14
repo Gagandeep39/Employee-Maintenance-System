@@ -27,9 +27,9 @@ import com.cg.exception.UserNotFoundException;
  */
 public class EmployeeServiceImpl extends UserServiceImpl implements EmployeeService{
 
-	private EmployeeDao employeeDao;
-	private LeaveDao leaveDao;
-	private UserDao userDao;
+	protected EmployeeDao employeeDao;
+	protected LeaveDao leaveDao;
+	protected UserDao userDao;
 	
 	/**
 	 * 

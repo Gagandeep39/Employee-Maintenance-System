@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService{
 	UserDao dao;
 
 	public UserServiceImpl() {
-		dao = new DaoImpl();
+		dao = DaoImpl.getDaoImpl();
 	}
 
 	@Override
