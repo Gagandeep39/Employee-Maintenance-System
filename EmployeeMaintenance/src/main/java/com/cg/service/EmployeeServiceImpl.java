@@ -63,7 +63,7 @@ public class EmployeeServiceImpl extends UserServiceImpl implements EmployeeServ
 				throw new UserNotFoundException("No employees with name: " + name + " found.");
 			else return list;
 		} catch (UserNotFoundException e) {
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage()); 
 		}
 		return list;
 	}
