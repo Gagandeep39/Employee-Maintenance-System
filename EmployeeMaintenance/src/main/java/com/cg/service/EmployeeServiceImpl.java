@@ -141,10 +141,4 @@ public class EmployeeServiceImpl extends UserServiceImpl implements EmployeeServ
 		return null;
 	}
 
-	
-	
-//	EmployeeService employeeService = new EmployeeServiceImpl();
-//	ManagerService managerService = new EmployeeServiceImpl();
-//	AdminService adminService = new AdminServiceImpl();
-
 }

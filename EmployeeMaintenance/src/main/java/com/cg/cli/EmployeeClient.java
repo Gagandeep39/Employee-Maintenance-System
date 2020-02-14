@@ -1,11 +1,7 @@
 
 package com.cg.cli;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -14,7 +10,6 @@ import java.util.Scanner;
 import com.cg.beans.Employee;
 import com.cg.beans.LeaveHistory;
 import com.cg.beans.User;
-import com.cg.dao.LeaveDao;
 import com.cg.enums.Department;
 import com.cg.enums.Designation;
 import com.cg.enums.Gender;
@@ -169,9 +164,6 @@ public class EmployeeClient {
 				LeaveStatus.Applied);
 		int id = employeeService.applyForLeave(leaveHistory);
 		System.out.println("Successfully created Leave with ID: " + id);
-
-//		new LeaveHistory(empId, noOfDaysApplied, dateFrom, dateTo, status)
-//		LeaveHistory leaveHistory  = new LeaveHistory(empId, leaveBalance, noOfDaysApplied, dateFrom, dateTo, status)
 
 	}
 
@@ -367,7 +359,7 @@ public class EmployeeClient {
 	private static void showManagerMenu(int empId) {
 		Scanner console = new Scanner(System.in);
 		while (true) {
-			System.out.println("*********Employee Menu*********");
+			System.out.println("*********Manager Menu*********");
 			System.out.println("1. Search for Employee");
 			System.out.println("2. Apply For Leave");
 			System.out.println("3. Show All My Leaves");
