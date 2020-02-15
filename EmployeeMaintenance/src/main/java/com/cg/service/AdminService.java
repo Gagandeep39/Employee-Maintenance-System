@@ -1,6 +1,8 @@
 
 package com.cg.service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -40,7 +42,7 @@ public interface AdminService {
 	String namePattern = "[A-Za-z]{4,}";
 	String mobilePattern = "[7-9][0-9]{9}";
 	String emailPattern = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
-	String datePattern = "^\\d{4}$-\\d{1,2}-\\d{1,2}";	// '\\d'-> represents digit
+	String datePattern = "^\\d{4}-\\d{1,2}-\\d{1,2}$";	// '\\d'-> represents digit
 	String departmentPattern = "[1]";
 
 	static boolean validateName(String name) {
@@ -53,7 +55,22 @@ public interface AdminService {
 		return email.matches(emailPattern);
 	}
 	static boolean validateDate(String dob) {
-		return dob.matches(datePattern);
+		if(dob.matches(datePattern)) {
+			String[] date = dob.split("-");
+			Integer[] dayInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+			if(Integer.parseInt(date[1])>12) {
+				System.out.println("Invalid month");
+				return false;
+			}else if(!(Integer.parseInt(date[2])<dayInMonth[Integer.parseInt(date[1])-1])) {
+				System.out.println("Month "+ date[1] + " has only " + dayInMonth[Integer.parseInt(date[1])-1] + " days");
+				return false;
+			}
+			return true;
+		}
+		else {
+			System.out.println("Pattern must be (yyyy-mm-dd)");
+			return false;
+		}
 	}
 	static boolean validateDepartment(int num) {
 		List<Department> departmentList = DataRepository.getDepartmentList().values().stream().collect(Collectors.toList());
@@ -61,6 +78,7 @@ public interface AdminService {
 			if(department.getDepartmentId()==num)
 				return true;
 		}
+		System.out.println("Invalid Department Number!!");
 		System.out.println("*********Valid List of Departments Are*********");
 		departmentList.forEach(System.out::println);
 		return false;
@@ -95,6 +113,21 @@ public interface AdminService {
 		managerList.forEach(m->{
 			System.out.println(m.getEmpId() +  " - " + m.getEmpFirstName() + " " + m.getEmpLastName());
 		});
+		return false;
+	}
+
+	/**
+	 * @param d
+	 * @return
+	 */
+	static boolean validateAge(LocalDate d) {
+		LocalDate currentDate = LocalDate.now();
+		Period period = Period.between(d, currentDate);
+		if(period.getYears()>=18 && period.getYears()<=58)
+			return true;
+		else {
+			System.out.println("Employee must be between 18-58 years");
+		}
 		return false;
 	}
 

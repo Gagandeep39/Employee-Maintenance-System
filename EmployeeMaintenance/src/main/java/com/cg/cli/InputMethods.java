@@ -2,6 +2,7 @@
 package com.cg.cli;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -242,8 +243,6 @@ public class InputMethods {
 			id = console.nextInt();
 			if (AdminService.validateDepartment(id))
 				break;
-			else
-				System.out.println("No Such Department Exist");
 		}
 		return id;
 	}
@@ -255,10 +254,13 @@ public class InputMethods {
 		LocalDate d = null;
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
-			System.out.println("Enter Date of Birth: ");
-			String dob = scanner.next();
-			d = LocalDate.parse(dob);
-			break;
+				System.out.println("Enter Date of Birth: ");
+				String dob = scanner.next();
+				if(AdminService.validateDate(dob)) {
+					d = LocalDate.parse(dob);
+					if(AdminService.validateAge(d))
+						break;
+				}
 		}
 		return d;
 
