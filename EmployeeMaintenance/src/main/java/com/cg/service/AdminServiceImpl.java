@@ -20,6 +20,8 @@ public class AdminServiceImpl extends UserServiceImpl implements AdminService {
 
 	private UserDao userDao;
 	private EmployeeDao employeeDao;
+	
+	
 
 	public AdminServiceImpl() {
 		userDao = DaoImpl.getDaoImpl();
@@ -65,8 +67,10 @@ public class AdminServiceImpl extends UserServiceImpl implements AdminService {
 
 	public List<Employee> showAllEmployees() {
 		HashMap<Integer, Employee> map = employeeDao.showAllEmployees();
-		if (map.size() == 0)
+		if (map.size() == 0) {
+			System.out.println("List is Empty");
 			return null;
+		}
 		else {
 			return map.values().stream().collect(Collectors.toList());
 		}
