@@ -22,13 +22,6 @@ import com.cg.enums.MaritalStatus;
  */
 public class Employee {
 	
-	public static final int EMPLOYEE_ID_INIT = 100001;
-	static int employeeIdAutoGen;
-	static {
-		employeeIdAutoGen = EMPLOYEE_ID_INIT;
-	}
-	
-	
 	private int empId;
 	private String empFirstName;
 	private String empLastName;
