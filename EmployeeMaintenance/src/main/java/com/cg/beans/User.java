@@ -12,7 +12,7 @@ import com.cg.enums.UserType;
  */
 public class User {
 	
-	public static final int USER_ID_INIT = 1001;
+	public static final int USER_ID_INIT = 100001;
 	static int userIdAutoGen;
 	static {
 		userIdAutoGen = USER_ID_INIT;
