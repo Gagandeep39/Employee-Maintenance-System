@@ -21,9 +21,9 @@ import com.cg.repository.DataRepository;
  * During Database we will make mltiple dao class
  */
 public class DaoImpl implements UserDao, EmployeeDao, LeaveDao {
-	private HashMap<Integer, User> userMap;
-	private HashMap<Integer, Employee> employeeMap;
-	private HashMap<Integer, LeaveHistory> leaveMap;
+	private static HashMap<Integer, User> userMap;
+	private static  HashMap<Integer, Employee> employeeMap;
+	private static HashMap<Integer, LeaveHistory> leaveMap;
 	static DaoImpl d;
 	
 	public static DaoImpl getDaoImpl() {
