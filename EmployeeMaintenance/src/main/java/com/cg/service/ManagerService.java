@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.cg.beans.LeaveHistory;
+import com.cg.enums.LeaveStatus;
 
 /**
  * @author Gagandeep
@@ -13,8 +14,9 @@ import com.cg.beans.LeaveHistory;
  */
 public interface ManagerService extends EmployeeService{
 	
-	int approveLeave(int leaveId);
+	int approveLeave(int leaveId, LeaveStatus status);
 	List<LeaveHistory> showAllLeaves();	//
 	HashMap<Integer, LeaveHistory> showAllLeavesOfSubEmployees(int managerId); //All em[ployes working under this manager will be displayed, has to be implemented
+
 }
 

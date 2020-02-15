@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.cg.beans.LeaveHistory;
+import com.cg.enums.LeaveStatus;
 
 /**
  * @author Gagandeep
@@ -88,22 +89,16 @@ public class ManagerMenu extends EmployeeMenu {
 	private static void approveLeave(int managerId) {
 		int leaveId = 0;
 		HashMap<Integer, LeaveHistory> leaveHisoryList = showAllSubEmployeesLeaves(managerId);
-//		System.out.println("Main: " + leaveHisoryList.size());
-		if (leaveHisoryList.isEmpty())
-			System.out.println("No leave requested");
-		else {
-			leaveHisoryList.values().forEach(l -> {
-				System.out.println(l);
-			});
-		}
-		while (true) {
 
+		while (true) {
+			LeaveStatus status ;
 			Scanner console = new Scanner(System.in);
 			try {
 				System.out.println("Enter Leave ID: ");
 				leaveId = console.nextInt();
 				if (leaveHisoryList.get(leaveId) != null) {
-					managerService.approveLeave(leaveId);
+					status = inputLeaveStatus();
+					managerService.approveLeave(leaveId, status);
 					break;
 				} else
 					System.out.println("Enter a valid Leave ID");
@@ -114,6 +109,27 @@ public class ManagerMenu extends EmployeeMenu {
 
 		}
 
+	}
+
+	/**
+	 * @return
+	 */
+	private static LeaveStatus inputLeaveStatus() {
+		System.out.println("Select Leave Status");
+		System.out.println("1. Approve");
+		System.out.println("2. Reject");
+		while(true) {
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Enter Status: ");
+			int op = scanner.nextInt();
+			switch (op) {
+			case 1: return LeaveStatus.Approved;
+			case 2: return LeaveStatus.Rejected;
+
+			default:System.out.println("Enter a valid status");
+				break;
+			}
+		}
 	}
 
 }
