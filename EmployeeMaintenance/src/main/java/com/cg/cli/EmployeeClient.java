@@ -30,7 +30,15 @@ import com.cg.service.UserServiceImpl;
  * @author Gagandeep
  * @time 7:35:43 pm
  * @date 12-Feb-2020
+ * 
+ * TODO - Add Documentations
+ * TODO - Add Approve or rejected for leaves
+ * TODO - Add validation for 6 digit Employee ID
+ * TODO - Create test cases in JUNIT
+ * TODO - Try implementing Singleton for Scanner
  */
+
+
 public class EmployeeClient {
 
 	static AdminService adminService = new AdminServiceImpl();
