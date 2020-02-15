@@ -319,17 +319,16 @@ public class InputMethods {
 		while (true) {
 			System.out.println("Enter Start date (yyyy-mm-dd): ");
 			String dob = scanner.next();
-//			if (AdminService.validateDate(dob)) {	//needs to be fixed
+			if (AdminService.validateDate(dob)) {	//needs to be fixed
 			d = LocalDate.parse(dob);
-
 			if (!LocalDate.now().isAfter(d))
 				break;
 			else
 				System.out.println("Input date must be after Today's date");
-//			} else
-//				System.out.println("Enter date in valid format!");
+			}
 		}
 		return d;
+		
 	}
 
 	/**
@@ -350,14 +349,19 @@ public class InputMethods {
 	 */
 	public static int inputLeaveRequired(int leaveBalance) {
 		int leaveRequired;
-		Scanner console = new Scanner(System.in);
 		while (true) {
-			System.out.print("Enter number of days: ");
-			leaveRequired = console.nextInt();
-			if (leaveRequired <= leaveBalance)
-				break;
-			else
-				System.out.println("Insufficient Leaves");
+			Scanner console = new Scanner(System.in);
+			try {
+				System.out.print("Enter number of days: ");
+				leaveRequired = console.nextInt();
+				if (leaveRequired <= leaveBalance)
+					break;
+				else
+					System.out.println("Insufficient Leaves");
+			} catch (InputMismatchException e) {
+				System.out.println("Enter an Integer value!");
+				console.reset();
+			}
 
 		}
 		return leaveRequired;
