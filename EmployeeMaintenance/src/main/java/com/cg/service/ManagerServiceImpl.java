@@ -1,10 +1,8 @@
 
 package com.cg.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.cg.beans.Employee;
@@ -62,17 +60,17 @@ public class ManagerServiceImpl extends EmployeeServiceImpl implements ManagerSe
 		
 		HashMap<Integer, LeaveHistory> map =  leaveDao.showAllLeaves();
 		HashMap<Integer, Employee> employeeMap = employeeDao.showAllEmployees();
-		System.out.println("Leave sizeL " + map.size() + " Employeemap" + employeeMap.size());
+//		System.out.println("Leave sizeL " + map.size() + " Employeemap" + employeeMap.size());
 		HashMap<Integer, LeaveHistory> leaveList = new HashMap<Integer, LeaveHistory>();
 		List<Employee> employees = employeeMap.values().stream().filter(e->e.getManagerId()==managerId).collect(Collectors.toList());
-		System.out.println("employeeList: " +employees.size());
+//		System.out.println("employeeList: " +employees.size());
 		for (Employee employee : employees) {
 			for (LeaveHistory leave : map.values()) {
 				if(employee.getEmpId()==leave.getEmpId())
 					leaveList.put(leave.getLeaveId(), leave);
 			}
 		}
-		System.out.println("leavelist: " + leaveList.size());
+//		System.out.println("leavelist: " + leaveList.size());
 //		System.out.println("Leaves Requested by Your Subordinates are");
 //		for (LeaveHistory l : leaveList) {
 //			System.out.println(l);
