@@ -41,7 +41,7 @@ public class EmployeeMenu extends EmployeeClient {
 				applyForLeave(empId);
 				break;
 			case 3:
-				showAllLeaves(empId);
+				showAllMyLeaves(empId);
 				break;
 			case 4:
 				System.out.println("Logging Out");
@@ -172,7 +172,7 @@ public class EmployeeMenu extends EmployeeClient {
 	/**
 	 * @param empId
 	 */
-	public static void showAllLeaves(int empId) {
+	public static void showAllMyLeaves(int empId) {
 		List<LeaveHistory> list = employeeService.showLeaveHistory(empId);
 		if (list != null) {
 			list.forEach(System.out::println);
