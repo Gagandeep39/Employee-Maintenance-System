@@ -6,23 +6,22 @@ import java.util.List;
 
 import com.cg.beans.User;
 
-
 /**
- * The Interface UserDao.
- * Contains signature of various operation that can be carried on employee list
+ * The Interface UserDao. Contains signature of various operation that can be
+ * carried on employee list
+ * 
  * @author Gagandeep
  * @time 7:50:04 pm
  * @date 10-Feb-2020
  */
 public interface UserDao {
-	
 	/**
 	 * Fetches the user map containg all user in the system
 	 *
 	 * @return the user map
 	 */
 	HashMap<Integer, User> getUserMap();
-	
+
 	/**
 	 * Fetch user based on ID
 	 *
@@ -30,7 +29,7 @@ public interface UserDao {
 	 * @return the user object conating user data having id passed as a parameter
 	 */
 	User fetchUser(int userId);
-	
+
 	/**
 	 * Adds the user to userMap
 	 *
@@ -38,7 +37,7 @@ public interface UserDao {
 	 * @return the userId that will be returned after insertion if data
 	 */
 	int addUser(User user);
-	
+
 	/**
 	 * Update user replacing previous user object with new one
 	 *
@@ -46,7 +45,7 @@ public interface UserDao {
 	 * @return the int
 	 */
 	int updateUser(User user);
-	
+
 	/**
 	 * Delete user based on ID
 	 *
