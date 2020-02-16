@@ -54,7 +54,7 @@ public class DataRepository {
 				100000, Gender.M, MaritalStatus.Single, "Planet earth", "12345677", 0);
 		Employee e3 = new Employee(u3.getUserId(), "Pranav", "Karmarkar", LocalDate.parse("1998-03-21"), 1002, GradeType.M7, Designation.Developer,
 				100000, Gender.M, MaritalStatus.Single, "Planet earth", "12345677", 100002);
-		Employee e4 = new Employee(u3.getUserId(), "Palak", "Surname", LocalDate.parse("1998-03-21"), 1002, GradeType.M7, Designation.Developer,
+		Employee e4 = new Employee(u4.getUserId(), "Palak", "Surname", LocalDate.parse("1998-03-21"), 1002, GradeType.M7, Designation.Developer,
 				100000, Gender.F, MaritalStatus.Single, "Planet earth", "12345677", 100002);
 
 		userMap.put(u1.getUserId(), u1);
