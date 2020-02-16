@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import com.cg.beans.Employee;
 import com.cg.beans.LeaveHistory;
-import com.cg.enums.Department;
+import com.cg.beans.Department;
 import com.cg.enums.GradeType;
 import com.cg.enums.LeaveStatus;
 import com.cg.enums.MaritalStatus;
