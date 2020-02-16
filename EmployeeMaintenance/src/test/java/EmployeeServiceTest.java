@@ -12,7 +12,7 @@ import org.junit.Test;
 import com.cg.beans.Employee;
 import com.cg.beans.LeaveHistory;
 import com.cg.dao.DaoImpl;
-import com.cg.enums.Department;
+import com.cg.beans.Department;
 import com.cg.enums.Designation;
 import com.cg.enums.Gender;
 import com.cg.enums.GradeType;

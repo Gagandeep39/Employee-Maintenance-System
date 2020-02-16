@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.cg.beans.Employee;
-import com.cg.enums.Department;
+import com.cg.beans.Department;
 import com.cg.enums.GradeType;
 import com.cg.enums.MaritalStatus;
 

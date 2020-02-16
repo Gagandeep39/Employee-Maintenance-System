@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.HiddenAction;
 
 import com.cg.beans.Employee;
 import com.cg.beans.LeaveHistory;
@@ -13,9 +12,8 @@ import com.cg.dao.DaoImpl;
 import com.cg.dao.EmployeeDao;
 import com.cg.dao.LeaveDao;
 import com.cg.dao.UserDao;
-import com.cg.enums.Department;
+import com.cg.beans.Department;
 import com.cg.enums.GradeType;
-import com.cg.enums.LeaveStatus;
 import com.cg.enums.MaritalStatus;
 import com.cg.exception.LeaveException;
 import com.cg.exception.UserNotFoundException;

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import com.cg.beans.Employee;
 import com.cg.beans.LeaveHistory;
 import com.cg.beans.User;
-import com.cg.enums.Department;
+import com.cg.beans.Department;
 import com.cg.enums.GradeType;
 import com.cg.enums.MaritalStatus;
 import com.cg.repository.DataRepository;
@@ -169,7 +169,7 @@ public class DaoImpl implements UserDao, EmployeeDao, LeaveDao {
 	 * @param d is the Department object 
 	 * @return the list of employees
 	 */
-	public List<Employee> searchEmployee(Derpartment d) {
+	public List<Employee> searchEmployee(Department d) {
 		return employeeMap.values().stream().filter(e->e.getEmpDepartmentId()==d.getDepartmentId()).collect(Collectors.toList());
 	}
 	

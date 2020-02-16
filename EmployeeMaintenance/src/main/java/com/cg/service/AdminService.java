@@ -8,9 +8,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.cg.beans.Employee;
-import com.cg.enums.Department;
+import com.cg.beans.Department;
 import com.cg.enums.Designation;
-import com.cg.enums.Grade;
+import com.cg.beans.Grade;
 import com.cg.enums.GradeType;
 import com.cg.exception.UserNotFoundException;
 import com.cg.repository.DataRepository;
