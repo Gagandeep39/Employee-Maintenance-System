@@ -8,9 +8,9 @@ import com.cg.enums.Gender;
 import com.cg.enums.GradeType;
 import com.cg.enums.MaritalStatus;
 
-
 /**
- * Employee bean that stores all necessary info of the Employee during Registration
+ * Employee bean that stores all necessary info of the Employee during
+ * Registration
  * 
  * @author Gagandeep
  * @time 8:08:25 pm
@@ -18,7 +18,7 @@ import com.cg.enums.MaritalStatus;
  */
 
 public class Employee {
-	
+
 	/**
 	 * Employee's ID
 	 */
@@ -75,7 +75,7 @@ public class Employee {
 	 * ID of the Manager to which employee is assigned to
 	 */
 	private int managerId;
-	
+
 	/**
 	 * Parameterized COnstructor
 	 * 
@@ -93,8 +93,8 @@ public class Employee {
 	 * @param empContactNumber
 	 * @param managerId
 	 */
-	public Employee(int empId, String empFirstName, String empLastName, LocalDate empDateOfBirth,
-			int empDepartmentId, GradeType empGrade, Designation empDesignation, int empBasic, Gender empGender,
+	public Employee(int empId, String empFirstName, String empLastName, LocalDate empDateOfBirth, int empDepartmentId,
+			GradeType empGrade, Designation empDesignation, int empBasic, Gender empGender,
 			MaritalStatus empMaritalStatus, String empHomeAddress, String empContactNumber, int managerId) {
 		super();
 		this.empId = empId;
@@ -112,13 +112,14 @@ public class Employee {
 		this.empContactNumber = empContactNumber;
 		this.managerId = managerId;
 	}
-	
+
 	/**
 	 * @return Employee ID
 	 */
 	public int getEmpId() {
 		return empId;
 	}
+
 	/**
 	 * 
 	 * @param empId Sets Employee Id
@@ -126,6 +127,7 @@ public class Employee {
 	public void setEmpId(int empId) {
 		this.empId = empId;
 	}
+
 	/**
 	 * 
 	 * @return First name of Employee
@@ -133,6 +135,7 @@ public class Employee {
 	public String getEmpFirstName() {
 		return empFirstName;
 	}
+
 	/**
 	 * 
 	 * @param empFirstName Sets the empFirstName
@@ -140,6 +143,7 @@ public class Employee {
 	public void setEmpFirstName(String empFirstName) {
 		this.empFirstName = empFirstName;
 	}
+
 	/**
 	 * 
 	 * @return lastName of Employee
@@ -147,13 +151,15 @@ public class Employee {
 	public String getEmpLastName() {
 		return empLastName;
 	}
+
 	/**
 	 * 
-	 * @param empLastName Sets the empLastName 
+	 * @param empLastName Sets the empLastName
 	 */
 	public void setEmpLastName(String empLastName) {
 		this.empLastName = empLastName;
 	}
+
 	/**
 	 * 
 	 * @return Date of Birth
@@ -161,6 +167,7 @@ public class Employee {
 	public LocalDate getEmpDateOfBirth() {
 		return empDateOfBirth;
 	}
+
 	/**
 	 * 
 	 * @param empDateOfBirth Sets the Date Of Birth
@@ -168,6 +175,7 @@ public class Employee {
 	public void setEmpDateOfBirth(LocalDate empDateOfBirth) {
 		this.empDateOfBirth = empDateOfBirth;
 	}
+
 	/**
 	 * 
 	 * @return Date of Joining
@@ -175,6 +183,7 @@ public class Employee {
 	public LocalDate getDateOfJoining() {
 		return dateOfJoining;
 	}
+
 	/**
 	 * 
 	 * @param dateOfJoiningOfJoining Sets the dateOfJoining
@@ -182,6 +191,7 @@ public class Employee {
 	public void setDateOfJoining(LocalDate dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
 	}
+
 	/**
 	 * 
 	 * @return Department ID
@@ -189,6 +199,7 @@ public class Employee {
 	public int getEmpDepartmentId() {
 		return empDepartmentId;
 	}
+
 	/**
 	 * 
 	 * @param empDepartmentId Sts department Id
@@ -196,6 +207,7 @@ public class Employee {
 	public void setEmpDepartmentId(int empDepartmentId) {
 		this.empDepartmentId = empDepartmentId;
 	}
+
 	/**
 	 * 
 	 * @return Employees Grade
@@ -203,6 +215,7 @@ public class Employee {
 	public GradeType getEmpGrade() {
 		return empGrade;
 	}
+
 	/**
 	 * 
 	 * @param empGrade sets Employee Grade
@@ -210,6 +223,7 @@ public class Employee {
 	public void setEmpGrade(GradeType empGrade) {
 		this.empGrade = empGrade;
 	}
+
 	/**
 	 * 
 	 * @return Employee's Designation
@@ -217,6 +231,7 @@ public class Employee {
 	public Designation getEmpDesignation() {
 		return empDesignation;
 	}
+
 	/**
 	 * 
 	 * @param empDesignation Set Employee Designation
@@ -224,6 +239,7 @@ public class Employee {
 	public void setEmpDesignation(Designation empDesignation) {
 		this.empDesignation = empDesignation;
 	}
+
 	/**
 	 * 
 	 * @return Basic Salary of Employee
@@ -231,6 +247,7 @@ public class Employee {
 	public int getEmpBasic() {
 		return empBasic;
 	}
+
 	/**
 	 * 
 	 * @param empBasic Set Employee Salary
@@ -238,6 +255,7 @@ public class Employee {
 	public void setEmpBasic(int empBasic) {
 		this.empBasic = empBasic;
 	}
+
 	/**
 	 * 
 	 * @return Gender of the Employee
@@ -245,6 +263,7 @@ public class Employee {
 	public Gender getEmpGender() {
 		return empGender;
 	}
+
 	/**
 	 * 
 	 * @param empGender Set Gender of Employee
@@ -252,6 +271,7 @@ public class Employee {
 	public void setEmpGender(Gender empGender) {
 		this.empGender = empGender;
 	}
+
 	/**
 	 * 
 	 * @return Marital Status of Employee
@@ -259,6 +279,7 @@ public class Employee {
 	public MaritalStatus getEmpMaritalStatus() {
 		return empMaritalStatus;
 	}
+
 	/**
 	 * 
 	 * @param empMaritalStatus Set Marital Status of Employee
@@ -266,6 +287,7 @@ public class Employee {
 	public void setEmpMaritalStatus(MaritalStatus empMaritalStatus) {
 		this.empMaritalStatus = empMaritalStatus;
 	}
+
 	/**
 	 * 
 	 * @return Home Address of Employee
@@ -273,13 +295,15 @@ public class Employee {
 	public String getEmpHomeAddress() {
 		return empHomeAddress;
 	}
+
 	/**
-	 * 	
+	 * 
 	 * @param empHomeAddress Sets Home Address of the Employee
 	 */
 	public void setEmpHomeAddress(String empHomeAddress) {
 		this.empHomeAddress = empHomeAddress;
 	}
+
 	/**
 	 * 
 	 * @return Employee's Contact number
@@ -287,6 +311,7 @@ public class Employee {
 	public String getEmpContactNumber() {
 		return empContactNumber;
 	}
+
 	/**
 	 * 
 	 * @param empContactNumber Set Employees contact number
@@ -294,6 +319,7 @@ public class Employee {
 	public void setEmpContactNumber(String empContactNumber) {
 		this.empContactNumber = empContactNumber;
 	}
+
 	/**
 	 * 
 	 * @return Manager ID of the Employee
@@ -301,6 +327,7 @@ public class Employee {
 	public int getManagerId() {
 		return managerId;
 	}
+
 	/**
 	 * 
 	 * @param managerId Sets Manager ID of Employee
@@ -308,9 +335,10 @@ public class Employee {
 	public void setManagerId(int managerId) {
 		this.managerId = managerId;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @return A string consisting of all values associated with the Employee Object
 	 */
 	@Override
@@ -321,8 +349,5 @@ public class Employee {
 				+ empBasic + ", empGender=" + empGender + ", empMaritalStatus=" + empMaritalStatus + ", empHomeAddress="
 				+ empHomeAddress + ", empContactNumber=" + empContactNumber + ", managerId=" + managerId + "]";
 	}
-	
-	
-	
 
 }

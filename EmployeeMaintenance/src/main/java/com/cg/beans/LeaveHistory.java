@@ -1,14 +1,14 @@
 
 package com.cg.beans;
 
-
 import java.time.LocalDate;
 
 import com.cg.enums.*;
 
 /**
  * 
- * LeaveHistory.java is a bean which contains necessary data about the leave taken by the employee
+ * LeaveHistory.java is a bean which contains necessary data about the leave
+ * taken by the employee
  * 
  * @author Gagandeep
  * @time 8:21:15 pm
@@ -17,7 +17,7 @@ import com.cg.enums.*;
 
 //Add new attribute for createdOn
 public class LeaveHistory {
-	
+
 	/**
 	 * {@value #LEAVE_ID_INIT} It is the starting value of Leave ID
 	 */
@@ -36,7 +36,7 @@ public class LeaveHistory {
 	static {
 		leaveIdAutoGen = LEAVE_ID_INIT;
 	}
-	
+
 	/**
 	 * Primary key for leave created
 	 */
@@ -69,8 +69,10 @@ public class LeaveHistory {
 	 * Current Status of the Leave (Applied, Approved, Rejected)
 	 */
 	private LeaveStatus status;
+
 	/**
-	 * Parameterized constructor to assign values to various Field of LeaveHistory Object
+	 * Parameterized constructor to assign values to various Field of LeaveHistory
+	 * Object
 	 * 
 	 * @param empId
 	 * @param leaveBalance
@@ -84,14 +86,14 @@ public class LeaveHistory {
 		super();
 		this.leaveId = leaveIdAutoGen++;
 		this.empId = empId;
-		this.leaveBalance =leaveBalance;
+		this.leaveBalance = leaveBalance;
 		this.appliedOn = LocalDate.now();
 		this.noOfDaysApplied = noOfDaysApplied;
 		this.dateFrom = dateFrom;
 		this.dateTo = dateTo;
 		this.status = status;
 	}
-	
+
 	/**
 	 * 
 	 * @return Leave ID of Leave
@@ -99,6 +101,7 @@ public class LeaveHistory {
 	public int getLeaveId() {
 		return leaveId;
 	}
+
 	/**
 	 * 
 	 * @param leaveId Set Leave ID
@@ -106,6 +109,7 @@ public class LeaveHistory {
 	public void setLeaveId(int leaveId) {
 		this.leaveId = leaveId;
 	}
+
 	/**
 	 * 
 	 * @return Employee ID to which Leave is associated with
@@ -113,6 +117,7 @@ public class LeaveHistory {
 	public int getEmpId() {
 		return empId;
 	}
+
 	/**
 	 * 
 	 * @param empId Sets the employee ID to the leave
@@ -120,6 +125,7 @@ public class LeaveHistory {
 	public void setEmpId(int empId) {
 		this.empId = empId;
 	}
+
 	/**
 	 * 
 	 * @return Max number of Leave available
@@ -127,6 +133,7 @@ public class LeaveHistory {
 	public int getLeaveBalance() {
 		return leaveBalance;
 	}
+
 	/**
 	 * 
 	 * @param leaveBalance Sets Max available Leaves
@@ -134,6 +141,7 @@ public class LeaveHistory {
 	public void setLeaveBalance(int leaveBalance) {
 		this.leaveBalance = leaveBalance;
 	}
+
 	/**
 	 * 
 	 * @return Number of Days the leave is applied for
@@ -141,6 +149,7 @@ public class LeaveHistory {
 	public int getNoOfDaysApplied() {
 		return noOfDaysApplied;
 	}
+
 	/**
 	 * 
 	 * @param noOfDaysApplied Sets Number of Days of Leave
@@ -148,6 +157,7 @@ public class LeaveHistory {
 	public void setNoOfDaysApplied(int noOfDaysApplied) {
 		this.noOfDaysApplied = noOfDaysApplied;
 	}
+
 	/**
 	 * 
 	 * @return Start date of Leave
@@ -155,6 +165,7 @@ public class LeaveHistory {
 	public LocalDate getDateFrom() {
 		return dateFrom;
 	}
+
 	/**
 	 * 
 	 * @param dateFrom Sets Start date of Leave
@@ -162,6 +173,7 @@ public class LeaveHistory {
 	public void setDateFrom(LocalDate dateFrom) {
 		this.dateFrom = dateFrom;
 	}
+
 	/**
 	 * 
 	 * @return End date of Leave
@@ -169,6 +181,7 @@ public class LeaveHistory {
 	public LocalDate getDateTo() {
 		return dateTo;
 	}
+
 	/**
 	 * 
 	 * @param dateTo Sets End date of Leave
@@ -176,6 +189,7 @@ public class LeaveHistory {
 	public void setDateTo(LocalDate dateTo) {
 		this.dateTo = dateTo;
 	}
+
 	/**
 	 * 
 	 * @return Current Leave Status
@@ -183,6 +197,7 @@ public class LeaveHistory {
 	public LeaveStatus getStatus() {
 		return status;
 	}
+
 	/**
 	 * 
 	 * @param status Sets Current Leave Status
@@ -190,9 +205,10 @@ public class LeaveHistory {
 	public void setStatus(LeaveStatus status) {
 		this.status = status;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @return A string containing all field Values of LeaveHistory
 	 */
 	@Override
@@ -201,8 +217,5 @@ public class LeaveHistory {
 				+ ", appliedOn=" + appliedOn + ", noOfDaysApplied=" + noOfDaysApplied + ", dateFrom=" + dateFrom
 				+ ", dateTo=" + dateTo + ", status=" + status + "]";
 	}
-	
-	
-	
 
 }

@@ -11,13 +11,14 @@ import com.cg.enums.UserType;
  * @date 10-Feb-2020
  */
 public class User {
-	
+
 	/**
 	 * {@value #USER_ID_INIT} It is the starting value of user ID
 	 */
 	public static final int USER_ID_INIT = 100001;
 	/**
-	 * A variable that assigns a new ID to user object every time an object is created and increments the value by 1
+	 * A variable that assigns a new ID to user object every time an object is
+	 * created and increments the value by 1
 	 */
 	static int userIdAutoGen;
 	/**
@@ -42,10 +43,9 @@ public class User {
 	 * Type of the user (Admin, Employee)
 	 */
 	private UserType userType;
-	
-	
+
 	/**
-	 * Parameterized constructor to create a new User 
+	 * Parameterized constructor to create a new User
 	 * 
 	 * @param userName
 	 * @param userPassword
@@ -58,6 +58,7 @@ public class User {
 		this.userPassword = userPassword;
 		this.userType = userType;
 	}
+
 	/**
 	 * 
 	 * @return user ID of the User
@@ -65,6 +66,7 @@ public class User {
 	public int getUserId() {
 		return userId;
 	}
+
 	/**
 	 * 
 	 * @param userId Sets User ID of User
@@ -72,6 +74,7 @@ public class User {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 	/**
 	 * 
 	 * @return Username of user
@@ -79,6 +82,7 @@ public class User {
 	public String getUserName() {
 		return userName;
 	}
+
 	/**
 	 * 
 	 * @param userName Sets Username of user
@@ -86,6 +90,7 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	/**
 	 * 
 	 * @return Password of user
@@ -93,6 +98,7 @@ public class User {
 	public String getUserPassword() {
 		return userPassword;
 	}
+
 	/**
 	 * 
 	 * @param userPassword Sets password
@@ -100,6 +106,7 @@ public class User {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
+
 	/**
 	 * 
 	 * @return Type of User (Admin, Employee)
@@ -107,6 +114,7 @@ public class User {
 	public UserType getUserType() {
 		return userType;
 	}
+
 	/**
 	 * 
 	 * @param userType Sets Type of User
@@ -114,8 +122,10 @@ public class User {
 	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
+
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @return A string containing all field Values of User
 	 */
 	@Override
@@ -123,7 +133,5 @@ public class User {
 		return "User [userId=" + userId + ", userName=" + userName + ", userPassword=" + userPassword + ", userType="
 				+ userType + "]";
 	}
-	
-	
 
 }
