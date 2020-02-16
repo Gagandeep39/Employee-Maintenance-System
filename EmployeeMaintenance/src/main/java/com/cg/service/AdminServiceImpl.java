@@ -53,16 +53,16 @@ public class AdminServiceImpl extends UserServiceImpl implements AdminService {
 		}
 	}
 
-	public Employee searchEmployee(int empId) {
+	public Employee searchEmployee(int empId) throws UserNotFoundException {
 		Employee employee = employeeDao.searchEmployee(empId);
-		try {
+//		try {
 			if (employee == null)
 				throw new UserNotFoundException();
 			return employee;
-		} catch (UserNotFoundException e) {
-			System.out.println(e);
-		}
-		return employee;
+//		} catch (UserNotFoundException e) {
+//			System.out.println(e);
+//		}
+//		return employee;
 	}
 
 	public List<Employee> showAllEmployees() {

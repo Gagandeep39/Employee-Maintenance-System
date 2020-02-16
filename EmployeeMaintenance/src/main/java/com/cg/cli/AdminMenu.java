@@ -12,6 +12,7 @@ import com.cg.enums.Gender;
 import com.cg.enums.GradeType;
 import com.cg.enums.MaritalStatus;
 import com.cg.enums.UserType;
+import com.cg.exception.UserNotFoundException;
 import com.cg.service.AdminService;
 
 /**
@@ -106,15 +107,21 @@ public class AdminMenu extends EmployeeClient{
 	 * 
 	 */
 	private static void updateEmployee() {
-		Scanner console = new Scanner(System.in);
 		int empId;
 		Employee employee;
 		while (true) {
-			System.out.print("Enter Employee ID to Update Data: ");
-			empId = console.nextInt();
-			employee = adminService.searchEmployee(empId);
-			if (employee != null)
-				break;
+			Scanner console = new Scanner(System.in);
+			try {
+				System.out.print("Enter Employee ID to Update Data: ");
+				if(console.hasNextInt()) {
+				empId = console.nextInt();
+				employee = adminService.searchEmployee(empId);
+				if (employee != null)
+					break;
+				}
+			} catch (UserNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 		employee.setEmpFirstName(InputMethods.inputFirstName());
 		employee.setEmpLastName(InputMethods.inputLastName());
@@ -137,15 +144,21 @@ public class AdminMenu extends EmployeeClient{
 	 * 
 	 */
 	private static void modifyManager() {
-		Scanner console = new Scanner(System.in);
 		int empId;
 		Employee employee;
 		while (true) {
-			System.out.print("Enter Employee ID whose Manager is to be Updated: ");
-			empId = console.nextInt();
-			employee = adminService.searchEmployee(empId);
-			if (employee != null)
-				break;
+			Scanner console = new Scanner(System.in);
+			try {
+				System.out.print("Enter Employee ID whose Manager is to be Updated: ");
+				if(console.hasNextInt()) {
+				empId = console.nextInt();
+				employee = adminService.searchEmployee(empId);
+				if (employee != null)
+					break;
+				}
+			} catch (UserNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 		employee.setManagerId(InputMethods.inputManagerId());
 		adminService.updateEmployee(employee);

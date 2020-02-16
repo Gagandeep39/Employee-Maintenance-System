@@ -12,6 +12,7 @@ import com.cg.enums.Department;
 import com.cg.enums.Designation;
 import com.cg.enums.Grade;
 import com.cg.enums.GradeType;
+import com.cg.exception.UserNotFoundException;
 import com.cg.repository.DataRepository;
 
 /**
@@ -29,7 +30,7 @@ public interface AdminService {
 
 	boolean deleteEmployee(int empId);
 
-	Employee searchEmployee(int empId);
+	Employee searchEmployee(int empId) throws UserNotFoundException;
 
 	int modifyManager(int empId, int managerId);
 
