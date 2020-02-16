@@ -40,8 +40,8 @@ public class DaoImpl implements UserDao, EmployeeDao, LeaveDao {
 	}
 
 	public int createLeave(LeaveHistory leave) {
-		leaveMap.put(leave.getEmpId(), leave);
-		return leave.getEmpId();
+		leaveMap.put(leave.getLeaveId(), leave);
+		return leave.getLeaveId();
 	}
 
 	public int updateLeaves(LeaveHistory leave) {
