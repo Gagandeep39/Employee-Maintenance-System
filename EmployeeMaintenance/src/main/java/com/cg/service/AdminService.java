@@ -98,7 +98,7 @@ public interface AdminService {
 			return true;
 		else
 			System.out.println(empGrade + " Employee's salary must be between " + grade.get().getMinSalary() + " and  "
-					+ grade.get().getMaxSalary());
+					+ grade.get().getMaxSalary() + " for a Grade " + empGrade + " employee");
 		return false;
 	}
 
