@@ -19,6 +19,9 @@ import com.cg.enums.UserType;
 
 /**
  * The Class DataRepository.
+ * Data repository is used to create and store dummy data in the system
+ * It prevents entering of data every single time the application is ran
+ * It is used as a substitute to persistant data (database)
  *
  * @author Gagandeep
  * @time 11:36:26 pm
