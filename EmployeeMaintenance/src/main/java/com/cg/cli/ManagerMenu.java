@@ -90,6 +90,7 @@ public class ManagerMenu extends EmployeeMenu {
 		int leaveId = 0;
 		HashMap<Integer, LeaveHistory> leaveHisoryList = showAllSubEmployeesLeaves(managerId);
 
+		if(leaveHisoryList.size()!=0)
 		while (true) {
 			LeaveStatus status ;
 			Scanner console = new Scanner(System.in);
@@ -101,7 +102,7 @@ public class ManagerMenu extends EmployeeMenu {
 					managerService.approveLeave(leaveId, status);
 					break;
 				} else
-					System.out.println("Enter a valid Leave ID");
+					System.out.println("Enter a LeaveID of your Employee");
 
 			} catch (InputMismatchException e) {
 				System.out.println("Enter an Integer Value");
