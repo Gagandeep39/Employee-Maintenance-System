@@ -83,6 +83,7 @@ public class EmployeeClient {
 			if (user != null)
 				break;
 
+			
 		}
 
 		switch (user.getUserType()) {
