@@ -169,7 +169,11 @@ public class AdminMenu extends EmployeeClient{
 	 * 
 	 */
 	private static void displayAllEmployee() {
-		adminService.showAllEmployees().forEach(System.out::println);
+		try {
+			adminService.showAllEmployees().forEach(System.out::println);
+		} catch (UserNotFoundException e) {
+			System.out.println(e);
+		}
 	}
 
 }

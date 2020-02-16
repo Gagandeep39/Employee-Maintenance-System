@@ -86,6 +86,11 @@ public class AdminServiceTest {
 		adminService.searchEmployee(99999);
 	}
 	
+
+	public void testShowAllEmployees() throws UserNotFoundException {
+		assertEquals(DaoImpl.getDaoImpl().showAllEmployees().size(), adminService.showAllEmployees().size());
+	}
+	
 	@After
 	public void clearMem() {
 		employee = null;

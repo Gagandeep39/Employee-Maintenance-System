@@ -11,6 +11,7 @@ import com.cg.enums.Department;
 import com.cg.enums.GradeType;
 import com.cg.enums.LeaveStatus;
 import com.cg.enums.MaritalStatus;
+import com.cg.exception.LeaveException;
 import com.cg.exception.UserNotFoundException;
 import com.cg.service.AdminService;
 
@@ -200,10 +201,16 @@ public class EmployeeMenu extends EmployeeClient {
 	 * @param empId
 	 */
 	public static void showAllMyLeaves(int empId) {
-		List<LeaveHistory> list = employeeService.showLeaveHistory(empId);
-		if (list != null) {
-			list.forEach(System.out::println);
+		List<LeaveHistory> list;
+		try {
+			list = employeeService.showLeaveHistory(empId);
+			if (list != null) {
+				list.forEach(System.out::println);
+			}
+		} catch (LeaveException e) {
+			System.out.println(e);
 		}
+		
 
 	}
 
@@ -213,19 +220,25 @@ public class EmployeeMenu extends EmployeeClient {
 	 */
 	protected static void applyForLeave(int empId) {
 		int leaveBalance = 0;
-		List<LeaveHistory> history = employeeService.showLeaveHistory(empId);
-		if (history == null || history.size() == 0) {
-			leaveBalance = 12;
-		} else
-			leaveBalance = history.get(history.size() - 1).getLeaveBalance();
-		int daysRequired = InputMethods.inputLeaveRequired(leaveBalance);
-		LocalDate dateFrom = InputMethods.inputDateFrom();
-		LocalDate dateTo = InputMethods.intputDateTo(daysRequired, dateFrom);
+		List<LeaveHistory> history;
+		try {
+			history = employeeService.showLeaveHistory(empId);
+			if (history == null || history.size() == 0) {
+				leaveBalance = 12;
+			} else
+				leaveBalance = history.get(history.size() - 1).getLeaveBalance();
+			int daysRequired = InputMethods.inputLeaveRequired(leaveBalance);
+			LocalDate dateFrom = InputMethods.inputDateFrom();
+			LocalDate dateTo = InputMethods.intputDateTo(daysRequired, dateFrom);
 
-		LeaveHistory leaveHistory = new LeaveHistory(empId, leaveBalance, daysRequired, dateFrom, dateTo,
-				LeaveStatus.Applied);
-		int id = employeeService.applyForLeave(leaveHistory);
-		System.out.println("Successfully created Leave with ID: " + id);
+			LeaveHistory leaveHistory = new LeaveHistory(empId, leaveBalance, daysRequired, dateFrom, dateTo,
+					LeaveStatus.Applied);
+			int id = employeeService.applyForLeave(leaveHistory);
+			System.out.println("Successfully created Leave with ID: " + id);
+		} catch (LeaveException e) {
+			System.out.println(e);
+		}
+		
 
 	}
 

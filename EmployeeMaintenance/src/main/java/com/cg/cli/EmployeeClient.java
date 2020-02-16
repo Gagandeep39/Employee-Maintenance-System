@@ -35,12 +35,14 @@ import com.cg.service.UserServiceImpl;
  * @time 7:35:43 pm
  * @date 12-Feb-2020
  * 
- *       TODO - Add Approve or rejected for leaves - DONE TODO - Add validation
- *       for 6 digit Employee ID - DONE (since Autogen) TODO - Try implementing
- *       Singleton for Scanner - DONE (not possible) TODO - hide password while
- *       entering - DONE (not possible in eclipse) TODO - try using username for
- *       login - DONE TODO - show welcome screen with username - DONE TODO -
- *       Create test cases in JUNIT TODO - Add Documentations
+ *       TODO - Add Approve or rejected for leaves - DONE 
+ *       TODO - Add validation for 6 digit Employee ID - DONE (since Autogen) 
+ *       TODO - Try implementing Singleton for Scanner - DONE (not possible) 
+ *       TODO - hide password while entering - DONE (not possible in eclipse)
+ *       TODO - try using username for login - DONE 
+ *       TODO - show welcome screen with username - DONE 
+ *       TODO - Create test cases in JUNIT 
+ *       TODO - Add Documentations
  */
 
 public class EmployeeClient {
