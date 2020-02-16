@@ -3,13 +3,18 @@ package com.cg.cli;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 import com.cg.beans.LeaveHistory;
 import com.cg.enums.LeaveStatus;
 
 /**
+ * ManagerMenu class shows list of operation that can be carried out by the
+ * Manager Manager perform all employee task along with few extra tasks A switch
+ * case based menu is shown to perform different operationa
+ * 
+ * @see EmployeeMenu
+ * 
  * @author Gagandeep
  * @time 6:41:22 am
  * @date 15-Feb-2020
@@ -17,7 +22,10 @@ import com.cg.enums.LeaveStatus;
 public class ManagerMenu extends EmployeeMenu {
 
 	/**
-	 * @param empId
+	 * Switch case based menu to execute various operation by the Manager
+	 * 
+	 * @param empId Tequired to carry out certain operation such as show
+	 *              subEmployees, show managers own leave
 	 * 
 	 */
 	public static void showManagerMenu(int empId) {
@@ -70,15 +78,17 @@ public class ManagerMenu extends EmployeeMenu {
 	}
 
 	/**
-	 * 
+	 * Displays a list of all Leaves stored in the system
 	 */
 	private static void showAllLeaves() {
 		managerService.showAllLeaves().forEach(System.out::println);
-		
+
 	}
 
 	/**
-	 * @param empId
+	 * Allows showing a list of all leaves requested by the subordinate employees
+	 * 
+	 * @param managerId Used to show leaves taken by all Sub-ordinates
 	 */
 	private static HashMap<Integer, LeaveHistory> showAllSubEmployeesLeaves(int managerId) {
 		HashMap<Integer, LeaveHistory> leaveHisoryList = managerService.showAllLeavesOfSubEmployees(managerId);
@@ -95,7 +105,10 @@ public class ManagerMenu extends EmployeeMenu {
 	}
 
 	/**
-	 * @param managerId
+	 * Allows Approving/rejecting of leaves Manager can only approve leave of his
+	 * own sub-ordinates
+	 * 
+	 * @param managerId Used to approve leave
 	 * 
 	 */
 	private static void approveLeave(int managerId) {
@@ -125,7 +138,11 @@ public class ManagerMenu extends EmployeeMenu {
 	}
 
 	/**
-	 * @return
+	 * Manager can either Approve the leave or reject the leave Input of status
+	 * update is taken as integer via switchcase based menu
+	 * 
+	 * @return Leave status
+	 * @see LeaveStatus
 	 */
 	private static LeaveStatus inputLeaveStatus() {
 		System.out.println("Select Leave Status");

@@ -1,22 +1,11 @@
 
 package com.cg.cli;
 
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 import com.cg.beans.Employee;
-import com.cg.beans.LeaveHistory;
 import com.cg.beans.User;
-import com.cg.enums.Department;
 import com.cg.enums.Designation;
-import com.cg.enums.Gender;
-import com.cg.enums.GradeType;
-import com.cg.enums.LeaveStatus;
-import com.cg.enums.MaritalStatus;
-import com.cg.enums.UserType;
 import com.cg.exception.UserNotFoundException;
 import com.cg.service.AdminService;
 import com.cg.service.AdminServiceImpl;
@@ -36,28 +25,46 @@ import com.cg.service.UserServiceImpl;
  * @date 12-Feb-2020
  * 
  *       TODO - Add Approve or rejected for leaves - DONE 
- *       TODO - Add validation for 6 digit Employee ID - DONE (since Autogen) 
+ *       TODO - Add validation for 6 digit Employee ID - DONE (since Autogen)
  *       TODO - Try implementing Singleton for Scanner - DONE (not possible) 
- *       TODO - hide password while entering - DONE (not possible in eclipse)
- *       TODO - try using username for login - DONE 
+ *       TODO - hide password while entering - DONE (not possible in eclipse) 
+ *       TODO - try using username for login - DONE
  *       TODO - show welcome screen with username - DONE 
- *       TODO - Create test cases in JUNIT 
+ *       TODO - Create test cases in JUNIT - DONE 
  *       TODO - Add Documentations
  */
 
 public class EmployeeClient {
 
+	/**
+	 * Referene to AdminService interface to carry operations of an Admin
+	 */
 	static AdminService adminService = new AdminServiceImpl();
+	/**
+	 * Reference to EmployeeService to carry operations of an Employee
+	 */
 	static EmployeeService employeeService = new EmployeeServiceImpl();
+	/**
+	 * Reference to ManagerService to carry operation of a Manager
+	 */
 	static ManagerService managerService = new ManagerServiceImpl();
+	/**
+	 * Reference to UserService to carry Login related operation
+	 */
 	static UserService userService = new UserServiceImpl();
 
+	/**
+	 * Starting point of the Employee Management System
+	 * 
+	 * @param args Passed in command line (not used)
+	 */
 	public static void main(String[] args) {
 		loginSystem();
 	}
 
 	/**
-	 * 
+	 * Allows Logging into the system by Entering credentials (username and
+	 * password)
 	 */
 	public static void loginSystem() {
 		Scanner console = new Scanner(System.in);
@@ -92,8 +99,9 @@ public class EmployeeClient {
 	}
 
 	/**
-	 * @param i
 	 * 
+	 * @param empId Used to check whether Employee is a regular employee or Manager
+	 *              and show menu based on Designation value
 	 */
 	private static void checkManagerOrEmployee(int empId) {
 

@@ -2,11 +2,8 @@
 package com.cg.cli;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import javax.sound.midi.SysexMessage;
 
 import com.cg.beans.LeaveHistory;
 import com.cg.enums.Designation;
@@ -16,6 +13,13 @@ import com.cg.enums.MaritalStatus;
 import com.cg.service.AdminService;
 
 /**
+ * InputMethods class contains different methods to take input from the user All
+ * these static methods are used to take input from the user and validate it
+ * These methods are called while performing operations via Emplee, Admin,
+ * Manager
+ * 
+ * @see AdminMenu, EmployeeMenu, EmployeeMenu
+ * 
  * @author Gagandeep
  * @time 6:26:47 am
  * @date 15-Feb-2020
@@ -23,7 +27,9 @@ import com.cg.service.AdminService;
 public class InputMethods {
 
 	/**
-	 * @return
+	 * Takes password as user Input
+	 * 
+	 * @return Password entered by the User
 	 */
 	public static String inputPassword() {
 		Scanner console = new Scanner(System.in);
@@ -34,7 +40,9 @@ public class InputMethods {
 	}
 
 	/**
-	 * @return
+	 * Allows entering of username by the user
+	 * 
+	 * @return Username entered by user
 	 */
 	public static String inputUserName() {
 		Scanner console = new Scanner(System.in);
@@ -45,32 +53,33 @@ public class InputMethods {
 	}
 
 	/**
-	 * @return
+	 * Enter Manager ID and validate if any such manager Exist or not and show
+	 * appropriate message
+	 * 
+	 * @return managerId Entered by user
 	 */
 	public static int inputManagerId() {
 		int managerId = 0;
 		while (true) {
 			Scanner console = new Scanner(System.in);
-//			try {
-				System.out.print("Enter Manager Id: ");
-				if(console.hasNextInt()) {
-					managerId = console.nextInt();
+			System.out.print("Enter Manager Id: ");
+			if (console.hasNextInt()) {
+				managerId = console.nextInt();
 				if (managerId == 0)
 					return managerId;
 				else if (AdminService.validateManager(managerId))
 					return managerId;
 				else
 					System.out.println("Enter a valid Manager ID or 0 for no Manager");
-				}else 
-					System.out.println("Enter an Integer Value");
-//			} catch (InputMismatchException e) {
-//				return managerId = 0;
-//			}
+			} else
+				System.out.println("Enter an Integer Value");
 		}
 	}
 
 	/**
-	 * @return
+	 * Allows Entering of Phone number by user and validation is performed
+	 * 
+	 * @return Phone number entered by user
 	 */
 	public static String inputPhoneNumber() {
 		Scanner console = new Scanner(System.in);
@@ -86,7 +95,10 @@ public class InputMethods {
 	}
 
 	/**
-	 * @return
+	 * Entering of Home address via Console screen which is return to the caller
+	 * method
+	 * 
+	 * @return Home address
 	 */
 	public static String inputHomeAddress() {
 
@@ -98,7 +110,12 @@ public class InputMethods {
 	}
 
 	/**
-	 * @return
+	 * Marital status is entered by the user in a form a integer value, where each
+	 * value is associated with a different marital status Displays a list of all
+	 * valid MaritalStatus Available
+	 * 
+	 * @see MaritalStatus
+	 * @return Marital status
 	 */
 	public static MaritalStatus inputMaritalStatus() {
 		System.out.println("Marital Status Options are as follows");
@@ -107,7 +124,6 @@ public class InputMethods {
 			System.out.println(i++ + ". " + g);
 		while (true) {
 			Scanner console = new Scanner(System.in);
-//			try {
 			System.out.print("Select Marital Status: ");
 			if (console.hasNextInt()) {
 				int op = console.nextInt();
@@ -129,20 +145,19 @@ public class InputMethods {
 				}
 			} else
 				System.out.println("Enter an Integer");
-//			} catch (InputMismatchException e) {
-//				System.out.println("Enter Integer Value");
-//			}
 		}
 	}
 
 	/**
-	 * @return
+	 * Enters Gender via switch case 1 -> Male, 2-> Female
+	 * 
+	 * @see Gender
+	 * @return Gender of the EMployee
 	 */
 	public static Gender inputGender() {
 		System.out.println("Gender 1. Male, 2. Female");
 		while (true) {
 			Scanner console = new Scanner(System.in);
-//			try {
 			System.out.print("Enter Selection: ");
 			if (console.hasNextInt()) {
 				int op = console.nextInt();
@@ -157,21 +172,22 @@ public class InputMethods {
 				}
 			} else
 				System.out.println("Enter an Integer Value");
-//			} catch (InputMismatchException e) {
-//				System.out.println("Enter Integer Value");
-//			}
 
 		}
 	}
 
 	/**
-	 * @param empGrade
-	 * @return
+	 * Allows Entering of Employee salary Different Employee grade have different
+	 * salary band Entering salary of rong band will show an error along with the
+	 * slary band
+	 * 
+	 * @see Grade
+	 * @param empGrade Employee Grade is associated with a rangle of salary
+	 * @return Basic Salary of The Employee
 	 */
 	public static int inputSalary(GradeType empGrade) {
 		int sal;
 		while (true) {
-//			try {
 			Scanner console = new Scanner(System.in);
 			System.out.print("Enter Salary: ");
 			if (console.hasNextInt()) {
@@ -180,15 +196,16 @@ public class InputMethods {
 					break;
 			} else
 				System.out.println("Enter an Integer value");
-//			} catch (InputMismatchException e) {
-//				System.out.println("Input must be an integer");
-//			}
 		}
 		return sal;
 	}
 
 	/**
-	 * @return
+	 * Allows entering of designation in he form of Integer Each integer is
+	 * associated with a designation
+	 * 
+	 * @see Designation
+	 * @return Designation of Employee
 	 */
 	public static Designation inputDesignation() {
 
@@ -198,7 +215,6 @@ public class InputMethods {
 			System.out.println(i++ + ". " + g);
 		while (true) {
 			Scanner console = new Scanner(System.in);
-//			try {
 			System.out.print("Select Designation: ");
 			if (console.hasNextInt()) {
 				int op = console.nextInt();
@@ -222,14 +238,15 @@ public class InputMethods {
 				}
 			} else
 				System.out.println("Enter Integer value");
-//			} catch (InputMismatchException e) {
-//				System.out.println("Enter an Integer Value");
-//			}
 		}
 	}
 
 	/**
-	 * @return
+	 * Allows entering of grade as an integer Each grade is associated with aan
+	 * Integer Based of Employee Grade it will be assigned different salary
+	 * 
+	 * @see GradeType
+	 * @return Employee Grade
 	 */
 	public static GradeType inputGrade() {
 
@@ -239,7 +256,6 @@ public class InputMethods {
 			System.out.println(i++ + "." + g);
 		while (true) {
 			Scanner console = new Scanner(System.in);
-//			try {
 			System.out.print("Select Grade: ");
 			if (console.hasNextInt()) {
 				int op = console.nextInt();
@@ -265,15 +281,14 @@ public class InputMethods {
 				}
 			} else
 				System.out.println("Enter Integer Value");
-//			} catch (InputMismatchException e) {
-//				System.out.println("Enter an Integer Value");
-//			}
-
 		}
 	}
 
 	/**
-	 * @return
+	 * Allows Entering of department ID Validation of ID is perrformed followed by
+	 * which a list of valid IDs is shown
+	 * 
+	 * @return Department ID
 	 */
 	public static int inputDepartmentId() {
 		int id;
@@ -297,7 +312,11 @@ public class InputMethods {
 	}
 
 	/**
-	 * @return
+	 * Allows entering of Date of Birth Default format is (yyyy-mm-dd) A validation
+	 * is performed for the entered date, followed by age validation where age must
+	 * be 18<=age<=58
+	 * 
+	 * @return Date of Birth
 	 */
 	public static LocalDate inputDoB() {
 		LocalDate d = null;
@@ -316,7 +335,9 @@ public class InputMethods {
 	}
 
 	/**
-	 * @return
+	 * Allows entering name of User Provides basic name validation
+	 * 
+	 * @return Last name of Employee
 	 */
 	public static String inputLastName() {
 		String name = "";
@@ -333,7 +354,9 @@ public class InputMethods {
 	}
 
 	/**
-	 * @return
+	 * Allows entering of first name of User Basic name validation is performed
+	 * 
+	 * @return First name of Employee
 	 */
 	public static String inputFirstName() {
 		String name = "";
@@ -350,9 +373,12 @@ public class InputMethods {
 	}
 
 	/**
+	 * Calculated the end date of Leave based on start date and number of days
+	 * requested
+	 * 
 	 * @param daysRequired
 	 * @param dateFrom
-	 * @return
+	 * @return End date of Leave
 	 */
 	public static LocalDate intputDateTo(int daysRequired, LocalDate dateFrom) {
 		LocalDate date = dateFrom.plusDays(daysRequired);
@@ -360,7 +386,9 @@ public class InputMethods {
 	}
 
 	/**
-	 * @return
+	 * Allows entering of Start date to request for a leave
+	 * 
+	 * @return Start date of Leave requested
 	 */
 	public static LocalDate inputDateFrom() {
 		LocalDate d = null;
@@ -381,9 +409,12 @@ public class InputMethods {
 	}
 
 	/**
+	 * Calculates the number of holidays the employee can take based on previous
+	 * leaves and curently requested leave Max leave available are 12
+	 * 
 	 * @param history
 	 * @param leaveRequired
-	 * @return
+	 * @return Number of leave Left
 	 */
 	public static int inputLeaveBalance(int leaveRequired, LeaveHistory history) {
 		if (history == null)
@@ -393,8 +424,10 @@ public class InputMethods {
 	}
 
 	/**
-	 * @param empId
-	 * @return
+	 * Enter the number of leave required by the user
+	 * 
+	 * @param leaveBalance Max number of leaves that the Employee can take
+	 * @return Number of leves required by the Employee
 	 */
 	public static int inputLeaveRequired(int leaveBalance) {
 		int leaveRequired;

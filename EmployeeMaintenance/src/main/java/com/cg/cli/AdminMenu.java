@@ -2,7 +2,6 @@
 package com.cg.cli;
 
 import java.time.LocalDate;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.cg.beans.Employee;
@@ -13,17 +12,19 @@ import com.cg.enums.GradeType;
 import com.cg.enums.MaritalStatus;
 import com.cg.enums.UserType;
 import com.cg.exception.UserNotFoundException;
-import com.cg.service.AdminService;
 
 /**
+ * Admin Menu allows carrying of different operation by admin such as add,
+ * delete, search, modify employee
+ * 
  * @author Gagandeep
  * @time 10:08:40 pm
  * @date 14-Feb-2020
  */
-public class AdminMenu extends EmployeeClient{
-	
+public class AdminMenu extends EmployeeClient {
+
 	/**
-	 * 
+	 * A switch case menu shown to user who is an Admin
 	 */
 	static void showAdminMenu() {
 		while (true) {
@@ -36,43 +37,46 @@ public class AdminMenu extends EmployeeClient{
 			System.out.println("5. Log Out");
 			System.out.println("6. Exit");
 			System.out.print("Input: ");
-			if(console.hasNextInt()) {
-			int op = console.nextInt();
-			switch (op) {
-			case 1:
-				addEmployee();
-				break;
-			case 2:
-				updateEmployee();
-				break;
-			case 3:
-				modifyManager();
-				break;
-			case 4:
-				displayAllEmployee();
-				break;
-			case 5:
-				System.out.println("Logging Out");
-				EmployeeClient.loginSystem();
-				break;
-			case 6:
-				System.out.println("Powering Off...");
-				System.exit(0);
-				break;
+			if (console.hasNextInt()) {
+				int op = console.nextInt();
+				switch (op) {
+				case 1:
+					addEmployee();
+					break;
+				case 2:
+					updateEmployee();
+					break;
+				case 3:
+					modifyManager();
+					break;
+				case 4:
+					displayAllEmployee();
+					break;
+				case 5:
+					System.out.println("Logging Out");
+					EmployeeClient.loginSystem();
+					break;
+				case 6:
+					System.out.println("Powering Off...");
+					System.exit(0);
+					break;
 
-			default:
-				break;
-			}
-			}else {
+				default:
+					break;
+				}
+			} else {
 				System.out.println("Enter an Integer Value");
 			}
 
 		}
 
 	}
-	
+
 	/**
-	 * 
+	 * Allows adding of New employee in the System
+	 * Different methods are called to take input from console screen
+	 * Basic validations are performed while taking user input
+	 * @see InputMethods Class contaning various methods to take input from console screen
 	 */
 	private static void addEmployee() {
 		Scanner console = new Scanner(System.in);
@@ -91,7 +95,7 @@ public class AdminMenu extends EmployeeClient{
 		String phoneNumber = InputMethods.inputPhoneNumber();
 		int managerId = InputMethods.inputManagerId();
 
-		// USer Info
+		// User Info
 		String userName = InputMethods.inputUserName();
 		String password = InputMethods.inputPassword();
 
@@ -102,9 +106,11 @@ public class AdminMenu extends EmployeeClient{
 		adminService.addEmployee(employee);
 		System.out.println("Successfully Created Employee with ID: " + user.getUserId());
 	}
-	
+
 	/**
-	 * 
+	 * Update the data associated with the employee Enter the ID of employee whose
+	 * data is to be updated Various methods are called to take other info such as
+	 * name, age, address etc as iput from user
 	 */
 	private static void updateEmployee() {
 		int empId;
@@ -113,11 +119,11 @@ public class AdminMenu extends EmployeeClient{
 			Scanner console = new Scanner(System.in);
 			try {
 				System.out.print("Enter Employee ID to Update Data: ");
-				if(console.hasNextInt()) {
-				empId = console.nextInt();
-				employee = adminService.searchEmployee(empId);
-				if (employee != null)
-					break;
+				if (console.hasNextInt()) {
+					empId = console.nextInt();
+					employee = adminService.searchEmployee(empId);
+					if (employee != null)
+						break;
 				}
 			} catch (UserNotFoundException e) {
 				System.out.println(e.getMessage());
@@ -141,7 +147,11 @@ public class AdminMenu extends EmployeeClient{
 	}
 
 	/**
+	 * Change the manager of the Employee to which he reports by changing manager ID
+	 * Basic validation is performed to ensure that such a Manager exists
 	 * 
+	 * @exception UserNotFoundException Thrown when no manager with entered ID is
+	 *                                  available
 	 */
 	private static void modifyManager() {
 		int empId;
@@ -150,11 +160,11 @@ public class AdminMenu extends EmployeeClient{
 			Scanner console = new Scanner(System.in);
 			try {
 				System.out.print("Enter Employee ID whose Manager is to be Updated: ");
-				if(console.hasNextInt()) {
-				empId = console.nextInt();
-				employee = adminService.searchEmployee(empId);
-				if (employee != null)
-					break;
+				if (console.hasNextInt()) {
+					empId = console.nextInt();
+					employee = adminService.searchEmployee(empId);
+					if (employee != null)
+						break;
 				}
 			} catch (UserNotFoundException e) {
 				System.out.println(e.getMessage());
@@ -164,9 +174,10 @@ public class AdminMenu extends EmployeeClient{
 		adminService.updateEmployee(employee);
 
 	}
-	
+
 	/**
-	 * 
+	 * Display the List of All employees in the system
+	 * @exception UserNotFoundException thrown when no data is Employee list is empty
 	 */
 	private static void displayAllEmployee() {
 		try {
