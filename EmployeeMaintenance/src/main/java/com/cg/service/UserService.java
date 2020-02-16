@@ -17,4 +17,10 @@ public interface UserService {
 	 * 
 	 */
 	int createUser(User user);
+	/**
+	 * @param uname
+	 * @param password
+	 * @return
+	 */
+	User login(String uname, String password);
 }

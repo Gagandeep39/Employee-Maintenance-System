@@ -1,6 +1,9 @@
 
 package com.cg.service;
 
+import java.util.HashMap;
+import java.util.Optional;
+
 import com.cg.beans.User;
 import com.cg.dao.DaoImpl;
 import com.cg.dao.UserDao;
@@ -53,5 +56,26 @@ public class UserServiceImpl implements UserService{
 		System.out.println("Successfully Added user with Id: " + userId);
 		return userId;
 	}
+
+	@Override
+	public User login(String uname, String password) {
+		HashMap<Integer, User> userMap = dao.getUserMap();
+		if(userMap.size()==0)
+			return null;
+		else {
+			Optional<User> user= userMap.values().stream().filter(u->u.getUserName().equals(uname)).findFirst();
+			if(!user.isPresent())
+				System.out.println("Username Not found");
+			else if(!user.get().getUserPassword().equals(password)) {
+				System.out.println("Invalid Password");
+			}
+			else {
+				System.out.println("*********Welcome " + uname + " (ID: " + user.get().getUserId() + ")*********");
+				return user.get();
+			}
+		}
+		return null;
+	}
+
 
 }

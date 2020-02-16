@@ -27,6 +27,9 @@ import com.cg.service.UserService;
 import com.cg.service.UserServiceImpl;
 
 /**
+ * EmployeeClient.java is the starting point of the program
+ * It shows the Menu for Login System and carry out different operations in console window
+ * 
  * @author Gagandeep
  * @time 7:35:43 pm
  * @date 12-Feb-2020
@@ -34,10 +37,10 @@ import com.cg.service.UserServiceImpl;
  * TODO - Add Approve or rejected for leaves - DONE
  * TODO - Add validation for 6 digit Employee ID - DONE (since Autogen)
  * TODO - Try implementing Singleton for Scanner - DONE (not possible)
+ * TODO - hide password while entering - DONE (not possible in eclipse)
  * TODO - Create test cases in JUNIT
  * TODO - try using username for login
  * TODO - show welcome screen with username
- * TODO - hide password while entering
  * TODO - Add Documentations
  */
 
@@ -63,18 +66,16 @@ public class EmployeeClient {
 		User user = null;
 		while (true) {
 
-			try {
-				System.out.println("*********Login System*********");
-				System.out.print("Enter User ID: ");
-				userId = console.nextInt();
-			} catch (InputMismatchException e) {
-				System.out.println(e.getMessage());
-			}
+			System.out.println("*********Login System*********");
+			System.out.print("Enter Username: ");
+			String uname = console.next();
+			
 			System.out.print("Enter Password: ");
 			password = console.next();
-			user = userService.login(userId, password);
+			user = userService.login(uname, password);
 			if (user != null)
 				break;
+
 
 		}
 
