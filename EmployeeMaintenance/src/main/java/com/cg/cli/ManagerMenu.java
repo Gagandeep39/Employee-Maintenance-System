@@ -29,8 +29,9 @@ public class ManagerMenu extends EmployeeMenu {
 			System.out.println("3. Show All My Leaves");
 			System.out.println("4. Show All Sub-Employees Leave");
 			System.out.println("5. Approve Leave");
-			System.out.println("6. Log Out");
-			System.out.println("7. Exit");
+			System.out.println("6. Show All Leaves");
+			System.out.println("7. Log Out");
+			System.out.println("8. Exit");
 			if (console.hasNextInt()) {
 				int op = console.nextInt();
 				switch (op) {
@@ -50,10 +51,12 @@ public class ManagerMenu extends EmployeeMenu {
 					approveLeave(empId);
 					break;
 				case 6:
+					showAllLeaves();
+				case 7:
 					System.out.println("Logging Out");
 					loginSystem();
 					break;
-				case 7:
+				case 8:
 					System.out.println("Powering Off...");
 					System.exit(0);
 					break;
@@ -67,12 +70,18 @@ public class ManagerMenu extends EmployeeMenu {
 	}
 
 	/**
+	 * 
+	 */
+	private static void showAllLeaves() {
+		managerService.showAllLeaves().forEach(System.out::println);
+		
+	}
+
+	/**
 	 * @param empId
 	 */
 	private static HashMap<Integer, LeaveHistory> showAllSubEmployeesLeaves(int managerId) {
-		int leaveId = 0;
 		HashMap<Integer, LeaveHistory> leaveHisoryList = managerService.showAllLeavesOfSubEmployees(managerId);
-//		System.out.println("Main: " + leaveHisoryList.size());
 		if (leaveHisoryList.isEmpty())
 			System.out.println("No leave requested");
 		else {
