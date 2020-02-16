@@ -65,11 +65,10 @@ public class AdminServiceImpl extends UserServiceImpl implements AdminService {
 //		return employee;
 	}
 
-	public List<Employee> showAllEmployees() {
+	public List<Employee> showAllEmployees() throws UserNotFoundException {
 		HashMap<Integer, Employee> map = employeeDao.showAllEmployees();
 		if (map.size() == 0) {
-			System.out.println("List is Empty");
-			return null;
+			throw new UserNotFoundException();
 		}
 		else {
 			return map.values().stream().collect(Collectors.toList());

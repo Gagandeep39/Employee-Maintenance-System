@@ -108,10 +108,11 @@ public class EmployeeServiceImpl extends UserServiceImpl implements EmployeeServ
 	}
 
 	@Override
-	public List<Employee> showAllEmployees() {
+	public List<Employee> showAllEmployees() throws UserNotFoundException {
 		if (employeeDao.showAllEmployees().size() == 0) {
-			System.out.println("No Employees Found");
-			return null;
+			throw new UserNotFoundException();
+//			System.out.println("No Employees Found");
+//			return null;
 		} else
 			return employeeDao.showAllEmployees().values().stream().collect(Collectors.toList());
 
@@ -121,7 +122,7 @@ public class EmployeeServiceImpl extends UserServiceImpl implements EmployeeServ
 	public int applyForLeave(LeaveHistory l) {
 		int x = leaveDao.createLeave(l);
 		System.out.println("Success created leave with id " + x + " for employee " + l.getEmpId());
-		return l.getEmpId();
+		return l.getLeaveId();
 	}
 
 	@Override

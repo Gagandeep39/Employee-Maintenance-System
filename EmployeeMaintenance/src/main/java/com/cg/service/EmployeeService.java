@@ -8,6 +8,7 @@ import com.cg.beans.LeaveHistory;
 import com.cg.enums.Department;
 import com.cg.enums.GradeType;
 import com.cg.enums.MaritalStatus;
+import com.cg.exception.LeaveException;
 import com.cg.exception.UserNotFoundException;
 
 /**
@@ -22,9 +23,9 @@ public interface EmployeeService {
 	List<Employee> searchEmployee(Department d) throws UserNotFoundException;
 	List<Employee> searchEmployee(GradeType g) throws UserNotFoundException;
 	List<Employee> searchEmployee(MaritalStatus m) throws UserNotFoundException;
-	List<Employee> showAllEmployees();
+	List<Employee> showAllEmployees() throws UserNotFoundException;
 	int applyForLeave(LeaveHistory l);
-	List<LeaveHistory> showLeaveHistory(int empId);
+	List<LeaveHistory> showLeaveHistory(int empId) throws LeaveException;
 	
 	
 

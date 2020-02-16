@@ -34,7 +34,7 @@ public interface AdminService {
 
 	int modifyManager(int empId, int managerId);
 
-	List<Employee> showAllEmployees();
+	List<Employee> showAllEmployees() throws UserNotFoundException;
 
 	// Validations
 	String namePattern = "[A-Za-z]{4,}";
