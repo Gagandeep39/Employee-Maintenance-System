@@ -18,15 +18,24 @@ import com.cg.service.AdminService;
 import com.cg.service.AdminServiceImpl;
 
 /**
+ * The Class AdminServiceTest.
+ * Used to generate Admin Service class methods
+ *
  * @author Gagandeep
  * @time 12:09:27 pm
  * @date 16-Feb-2020
  */
 public class AdminServiceTest {
 
+	/** The employee. */
 	Employee employee;
+	
+	/** The admin service. */
 	AdminService adminService;
 
+	/**
+	 * Inits the.
+	 */
 	@Before
 	public void init() {
 		adminService = new AdminServiceImpl();
@@ -36,7 +45,7 @@ public class AdminServiceTest {
 	}
 
 	/**
-	 * 
+	 * Test add employee.
 	 */
 	@Test
 	public void testAddEmployee() {
@@ -44,6 +53,9 @@ public class AdminServiceTest {
 		assertEquals(id, employee.getEmpId());
 	}
 
+	/**
+	 * Test update employee.
+	 */
 	@Test
 	public void testUpdateEmployee() {
 		String oldName = "FirstName";
@@ -53,6 +65,9 @@ public class AdminServiceTest {
 		assertEquals("UpdatedName", updatedEmployee.getEmpFirstName());
 	}
 
+	/**
+	 * Test delete employee.
+	 */
 	@Test
 	public void testDeleteEmployee() {
 		DaoImpl.getDaoImpl().addEmployee(employee);
@@ -60,6 +75,9 @@ public class AdminServiceTest {
 		assertTrue(adminService.deleteEmployee(employee.getEmpId()));;
 	}
 
+	/**
+	 * Test search employee.
+	 */
 	@Test
 	public void testSearchEmployee() {
 		DaoImpl.getDaoImpl().addEmployee(employee);
@@ -73,6 +91,9 @@ public class AdminServiceTest {
 
 	}
 
+	/**
+	 * Test modify manager.
+	 */
 	@Test
 	public void testModifyManager() {
 		adminService.modifyManager(100009, 100003);
@@ -81,16 +102,29 @@ public class AdminServiceTest {
 
 	}
 	
+	/**
+	 * User not found excep test.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test(expected = UserNotFoundException.class)
 	public void userNotFoundExcepTest() throws UserNotFoundException{
 		adminService.searchEmployee(99999);
 	}
 	
 
+	/**
+	 * Test show all employees.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	public void testShowAllEmployees() throws UserNotFoundException {
 		assertEquals(DaoImpl.getDaoImpl().showAllEmployees().size(), adminService.showAllEmployees().size());
 	}
 	
+	/**
+	 * Clear mem.
+	 */
 	@After
 	public void clearMem() {
 		employee = null;

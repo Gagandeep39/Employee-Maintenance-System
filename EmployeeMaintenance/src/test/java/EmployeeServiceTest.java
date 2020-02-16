@@ -26,27 +26,33 @@ import com.cg.service.EmployeeService;
 import com.cg.service.EmployeeServiceImpl;
 
 /**
+ * The Class EmployeeServiceTest.
+ * Used to test Employee Service class methods
+ *
  * @author Gagandeep
  * @time 1:27:03 pm
  * @date 16-Feb-2020
  */
 public class EmployeeServiceTest {
 
-//	Employee searchEmployee(int empId) throws UserNotFoundException;
-//	List<Employee> searchEmployee(String name) throws UserNotFoundException;
-//	List<Employee> searchEmployee(Department d) throws UserNotFoundException;
-//	List<Employee> searchEmployee(GradeType g) throws UserNotFoundException;
-//	List<Employee> searchEmployee(MaritalStatus m) throws UserNotFoundException;
-//	List<Employee> showAllEmployees();
-//	int applyForLeave(LeaveHistory l);
-//	List<LeaveHistory> showLeaveHistory(int empId);
-
+	/** The employee service. */
 	EmployeeService employeeService;
+	
+	/** The admin service. */
 	AdminService adminService;
+	
+	/** The employee. */
 	Employee employee;
+	
+	/** The employee 2. */
 	Employee employee2;
+	
+	/** The employee 3. */
 	Employee employee3;
 
+	/**
+	 * Inits the.
+	 */
 	@Before
 	public void init() {
 		adminService = new AdminServiceImpl();
@@ -65,17 +71,32 @@ public class EmployeeServiceTest {
 		adminService.addEmployee(employee3);
 	}
 
+	/**
+	 * Test search employee.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testSearchEmployee() throws UserNotFoundException {
 		Employee searchedEmployee = employeeService.searchEmployee(100010);
 		assertEquals(100010, searchedEmployee.getEmpId());
 	}
 
+	/**
+	 * Test search exception.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test(expected = UserNotFoundException.class)
 	public void testSearchException() throws UserNotFoundException {
 		employeeService.searchEmployee(999);
 	}
 
+	/**
+	 * Test search name.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testSearchName() throws UserNotFoundException {
 		List<Employee> list = employeeService.searchEmployee("st");
@@ -84,6 +105,11 @@ public class EmployeeServiceTest {
 		}
 	}
 
+	/**
+	 * Test search marital status.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testSearchMaritalStatus() throws UserNotFoundException {
 		List<Employee> list = employeeService.searchEmployee(MaritalStatus.Single);
@@ -92,6 +118,11 @@ public class EmployeeServiceTest {
 		}
 	}
 
+	/**
+	 * Test search department.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testSearchDepartment() throws UserNotFoundException {
 
@@ -100,6 +131,12 @@ public class EmployeeServiceTest {
 			assertTrue(e.getEmpDepartmentId() == 1002);
 		}
 	}
+	
+	/**
+	 * Test search grade.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testSearchGrade() throws UserNotFoundException {
 
@@ -109,6 +146,11 @@ public class EmployeeServiceTest {
 		}
 	}
 	
+	/**
+	 * Test search grade exception.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test(expected = UserNotFoundException.class)
 	public void testSearchGradeException() throws UserNotFoundException {
 
@@ -119,6 +161,11 @@ public class EmployeeServiceTest {
 		}
 	}
 	
+	/**
+	 * Test search department exception.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test (expected = UserNotFoundException.class)
 	public void testSearchDepartmentException() throws UserNotFoundException {
 
@@ -128,6 +175,11 @@ public class EmployeeServiceTest {
 		}
 	}
 	
+	/**
+	 * Test search marriage exception.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test (expected = UserNotFoundException.class)
 	public void testSearchMarriageException() throws UserNotFoundException {
 
@@ -137,6 +189,9 @@ public class EmployeeServiceTest {
 		}
 	}
 	
+	/**
+	 * Test add leave.
+	 */
 	@Test
 	public void testAddLeave() {
 		LeaveHistory l = new LeaveHistory(100003, 12, 4, LocalDate.of(2020, 4, 14), LocalDate.of(2020, 4, 14), LeaveStatus.Applied);
@@ -144,6 +199,11 @@ public class EmployeeServiceTest {
 		assertEquals(leave, l.getLeaveId());
 	}
 	
+	/**
+	 * Test show leave history.
+	 *
+	 * @throws LeaveException the leave exception
+	 */
 	@Test
 	public void testShowLeaveHistory() throws LeaveException {
 		List<LeaveHistory> leaveHistories = employeeService.showLeaveHistory(100003);
@@ -152,12 +212,20 @@ public class EmployeeServiceTest {
 		}
 	}
 	
+	/**
+	 * Test show all employees.
+	 *
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Test
 	public void testShowAllEmployees() throws UserNotFoundException {
 		assertEquals(DaoImpl.getDaoImpl().showAllEmployees().size(), employeeService.showAllEmployees().size());
 	}
 	
 
+	/**
+	 * Clean mem.
+	 */
 	@After
 	public void cleanMem() {
 		employee = null;

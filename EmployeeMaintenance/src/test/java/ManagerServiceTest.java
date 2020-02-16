@@ -27,20 +27,30 @@ import com.cg.service.ManagerService;
 import com.cg.service.ManagerServiceImpl;
 
 /**
+ * The Class ManagerServiceTest.
+ * Used to create Test Cases for ManagerService
+ *
  * @author Gagandeep
  * @time 3:21:55 pm
  * @date 16-Feb-2020
  */
 public class ManagerServiceTest {
-//	int approveLeave(int leaveId, LeaveStatus status);
-//	List<LeaveHistory> showAllLeaves();	//
-//	HashMap<Integer, LeaveHistory> showAllLeavesOfSubEmployees(int managerId); //All em[ployes working under this manager will be displayed, has to be implemented
 
+	/** The manager service. */
 	ManagerService managerService;
+	
+	/** The admin service. */
 	AdminService adminService;
+	
+	/** The employee. */
 	Employee employee;
+	
+	/** The leave history 1. */
 	LeaveHistory leaveHistory1;
 
+	/**
+	 * Inits the.
+	 */
 	@Before
 	public void init() {
 		adminService = new AdminServiceImpl();
@@ -56,24 +66,36 @@ public class ManagerServiceTest {
 		managerService.applyForLeave(leaveHistory1);
 	}
 	
+	/**
+	 * Test leave apply.
+	 */
 	@Test
 	public void testLeaveApply() {
 		int leaveId=  managerService.approveLeave(leaveHistory1.getLeaveId(), LeaveStatus.Applied);
 		assertEquals(LeaveStatus.Applied, DaoImpl.getDaoImpl().showAllLeaves().get(leaveId).getStatus());;
 	}
 	
+	/**
+	 * Test leave reject.
+	 */
 	@Test
 	public void testLeaveReject() {
 		int leaveId=  managerService.approveLeave(leaveHistory1.getLeaveId(), LeaveStatus.Rejected);
 		assertEquals(LeaveStatus.Rejected, DaoImpl.getDaoImpl().showAllLeaves().get(leaveId).getStatus());;
 	}
 	
+	/**
+	 * Show all my leaves.
+	 */
 	@Test
 	public void showAllMyLeaves() {
 		List<LeaveHistory> xHistories = managerService.showAllLeaves();
 		assertEquals(DaoImpl.getDaoImpl().showAllLeaves().size(), xHistories.size());
 	}
 	
+	/**
+	 * Test show all sub leaves.
+	 */
 	@Test
 	public void testShowAllSubLeaves() {
 		HashMap<Integer, LeaveHistory> map  = managerService.showAllLeavesOfSubEmployees(100002);
@@ -87,6 +109,9 @@ public class ManagerServiceTest {
 		assertEquals(xHistories.size(), map.size());;
 	}
 	
+	/**
+	 * Clean mem.
+	 */
 	@After
 	public void cleanMem() {
 		employee = null;
