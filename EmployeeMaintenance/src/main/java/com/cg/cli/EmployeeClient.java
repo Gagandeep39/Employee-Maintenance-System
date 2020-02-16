@@ -32,8 +32,8 @@ import com.cg.service.UserServiceImpl;
  * @date 12-Feb-2020
  * 
  * TODO - Add Documentations
- * TODO - Add Approve or rejected for leaves
- * TODO - Add validation for 6 digit Employee ID
+ * TODO - Add Approve or rejected for leaves - DONE
+ * TODO - Add validation for 6 digit Employee ID - DONE (since Autogen)
  * TODO - Create test cases in JUNIT
  * TODO - Try implementing Singleton for Scanner
  */

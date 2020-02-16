@@ -39,7 +39,7 @@ public class LeaveHistory {
 		super();
 		this.leaveId = leaveIdAutoGen++;
 		this.empId = empId;
-		this.leaveBalance = DEFAULT_LEAVE_BAL;
+		this.leaveBalance =DEFAULT_LEAVE_BAL;
 		this.appliedOn = LocalDate.now();
 		this.noOfDaysApplied = noOfDaysApplied;
 		this.dateFrom = dateFrom;
