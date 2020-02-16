@@ -1,10 +1,7 @@
 
 package com.cg.repository;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 
 import com.cg.beans.Employee;
@@ -19,24 +16,38 @@ import com.cg.enums.LeaveStatus;
 import com.cg.enums.MaritalStatus;
 import com.cg.enums.UserType;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class DataRepository.
+ *
  * @author Gagandeep
  * @time 11:36:26 pm
  * @date 10-Feb-2020
  */
 public class DataRepository {
 
+	/** The user map to store user data */
 	private static HashMap<Integer, User> userMap;
+	
+	/** The employee map to store employee data */
 	private static HashMap<Integer, Employee> employeeMap;
+	
+	/** The department map to store various department */
 	private static HashMap<Integer, Department> departmentMap;
+	
+	/** The grade map to store various grades and various salary bands associated with it */
 	private static HashMap<GradeType, Grade> gradeMap;
+	
+	/** The leave map containing leave data */
 	private static HashMap<Integer, LeaveHistory> leaveMap;
 	static {
 		prepareHashMap();
 	}
 
+
 	/**
-	 * 
+	 * Prepare hash map.
+	 * Add data in various maps
 	 */
 	private static void prepareHashMap() {
 		userMap = new HashMap<Integer, User>();
@@ -99,12 +110,19 @@ public class DataRepository {
 
 	}
 
+	/**
+	 * Gets the grade list.
+	 *
+	 * @return the grade list
+	 */
 	public static HashMap<GradeType, Grade> getGradeList() {
 		return gradeMap;
 	}
 
 	/**
-	 * 
+	 * Gets the user list.
+	 *
+	 * @return the user list
 	 */
 	public static HashMap<Integer, User> getUserList() {
 		return userMap;
@@ -112,17 +130,29 @@ public class DataRepository {
 	}
 
 	/**
-	 * 
+	 * Gets the employee list.
+	 *
+	 * @return the employee list
 	 */
 	public static HashMap<Integer, Employee> getEmployeeList() {
 		return employeeMap;
 
 	}
 
+	/**
+	 * Gets the department list.
+	 *
+	 * @return the department list
+	 */
 	public static HashMap<Integer, Department> getDepartmentList() {
 		return departmentMap;
 	}
 
+	/**
+	 * Gets the leave map.
+	 *
+	 * @return the leave map
+	 */
 	public static HashMap<Integer, LeaveHistory> getLeaveMap() {
 		return leaveMap;
 
