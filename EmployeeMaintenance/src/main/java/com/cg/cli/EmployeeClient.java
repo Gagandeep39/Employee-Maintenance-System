@@ -31,8 +31,9 @@ import com.cg.service.UserServiceImpl;
  *       TODO - try using username for login - DONE
  *       TODO - show welcome screen with username - DONE 
  *       TODO - Create test cases in JUNIT - DONE 
- *       TODO - Add Documentations
- *       TODO - Make a test Suite
+ *       TODO - Add Documentations - DONE
+ *       TODO - Make a test Suite - DONE
+ *       TODO -ask sir correct way to implement Log4J
  */
 
 public class EmployeeClient {
