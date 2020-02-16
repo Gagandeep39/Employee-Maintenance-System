@@ -32,6 +32,7 @@ import com.cg.service.UserServiceImpl;
  *       TODO - show welcome screen with username - DONE 
  *       TODO - Create test cases in JUNIT - DONE 
  *       TODO - Add Documentations
+ *       TODO - Make a test Suite
  */
 
 public class EmployeeClient {
