@@ -169,7 +169,7 @@ public class DaoImpl implements UserDao, EmployeeDao, LeaveDao {
 	 * @param d is the Department object 
 	 * @return the list of employees
 	 */
-	public List<Employee> searchEmployee(Department d) {
+	public List<Employee> searchEmployee(Derpartment d) {
 		return employeeMap.values().stream().filter(e->e.getEmpDepartmentId()==d.getDepartmentId()).collect(Collectors.toList());
 	}
 	
