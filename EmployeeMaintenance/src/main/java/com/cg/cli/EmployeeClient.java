@@ -38,9 +38,9 @@ import com.cg.service.UserServiceImpl;
  * TODO - Add validation for 6 digit Employee ID - DONE (since Autogen)
  * TODO - Try implementing Singleton for Scanner - DONE (not possible)
  * TODO - hide password while entering - DONE (not possible in eclipse)
+ * TODO - try using username for login - DONE
+ * TODO - show welcome screen with username - DONE
  * TODO - Create test cases in JUNIT
- * TODO - try using username for login
- * TODO - show welcome screen with username
  * TODO - Add Documentations
  */
 

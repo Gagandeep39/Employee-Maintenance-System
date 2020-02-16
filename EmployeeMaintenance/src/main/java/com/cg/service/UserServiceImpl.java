@@ -70,7 +70,9 @@ public class UserServiceImpl implements UserService{
 				System.out.println("Invalid Password");
 			}
 			else {
-				System.out.println("*********Welcome " + uname + " (ID: " + user.get().getUserId() + ")*********");
+				System.out.println("************************************************\n");
+				System.out.println("         Welcome " + uname + " (ID: " + user.get().getUserId() + ")         ");
+				System.out.println("\n************************************************\n");
 				return user.get();
 			}
 		}
