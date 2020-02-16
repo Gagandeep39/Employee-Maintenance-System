@@ -29,16 +29,39 @@ public class ManagerServiceImpl extends EmployeeServiceImpl implements ManagerSe
 				throw new LeaveException();
 			else if (leaveHistory.getStatus() == LeaveStatus.Approved) {
 				System.out.println("Leave was already approved");
-			} else {
+			}else if(status==LeaveStatus.Rejected) {
+
 				leaveHistory.setStatus(status);
 				int x = leaveDao.updateLeaves(leaveHistory);
-				System.out.println("Leave with ID: " + x + " has been updated");
+				System.out.println("Leave with ID: " + x + " has been " + status);
 				return x;
 			}
+			else if(leaveHistory.getLeaveBalance()>=leaveHistory.getNoOfDaysApplied()) {
+				int days = leaveHistory.getLeaveBalance()-leaveHistory.getNoOfDaysApplied();
+				leaveHistory.setStatus(status);
+				leaveHistory.setLeaveBalance(days);
+				int x = leaveDao.updateLeaves(leaveHistory);
+				updateLeaveBalances(leaveHistory.getEmpId(), days);
+				System.out.println("Leave with ID: " + x + " has been " + status);
+				return x;
+			}else throw new LeaveException("Out of Leaves");
 		} catch (LeaveException e) {
 			System.out.println(e);
 		}
 		return leaveId;
+	}
+
+	/**
+	 * @param empId
+	 */
+	private void updateLeaveBalances(int empId, int leaveBalance) {
+		HashMap<Integer, LeaveHistory> leaveMap = leaveDao.showAllLeaves();
+		if (leaveMap.size() != 0)
+			leaveMap.values().stream().filter(l->l.getEmpId()==empId).forEach(e->{
+				e.setLeaveBalance(leaveBalance);
+				leaveDao.updateLeaves(e);
+			});
+		
 	}
 
 	@Override
