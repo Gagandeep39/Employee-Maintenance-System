@@ -98,7 +98,7 @@ public class ManagerMenu extends EmployeeMenu {
 				LeaveStatus status;
 				Scanner console = new Scanner(System.in);
 				try {
-					System.out.println("Enter Leave ID: ");
+					System.out.print("Enter Leave ID: ");
 					leaveId = console.nextInt();
 					if (leaveHisoryList.get(leaveId) != null) {
 						status = inputLeaveStatus();
