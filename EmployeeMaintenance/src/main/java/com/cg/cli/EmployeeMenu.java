@@ -11,6 +11,7 @@ import com.cg.enums.Department;
 import com.cg.enums.GradeType;
 import com.cg.enums.LeaveStatus;
 import com.cg.enums.MaritalStatus;
+import com.cg.exception.UserNotFoundException;
 import com.cg.service.AdminService;
 
 /**
@@ -32,30 +33,31 @@ public class EmployeeMenu extends EmployeeClient {
 			System.out.println("3. Show All my Leaves");
 			System.out.println("4. Log Out");
 			System.out.println("5. Exit");
-			if(console.hasNextInt()) {
-			int op = console.nextInt();
-			switch (op) {
-			case 1:
-				searchEmployee(empId);
-				break;
-			case 2:
-				applyForLeave(empId);
-				break;
-			case 3:
-				showAllMyLeaves(empId);
-				break;
-			case 4:
-				System.out.println("Logging Out");
-				loginSystem();
-				break;
-			case 5:
-				System.out.println("Powering Off...");
-				System.exit(0);
-				break;
-			default:
-				break;
-			}
-		}else System.out.println("Enter an Integer Value");
+			if (console.hasNextInt()) {
+				int op = console.nextInt();
+				switch (op) {
+				case 1:
+					searchEmployee(empId);
+					break;
+				case 2:
+					applyForLeave(empId);
+					break;
+				case 3:
+					showAllMyLeaves(empId);
+					break;
+				case 4:
+					System.out.println("Logging Out");
+					loginSystem();
+					break;
+				case 5:
+					System.out.println("Powering Off...");
+					System.exit(0);
+					break;
+				default:
+					break;
+				}
+			} else
+				System.out.println("Enter an Integer Value");
 		}
 
 	}
@@ -113,9 +115,17 @@ public class EmployeeMenu extends EmployeeClient {
 	private static void searchById() {
 
 		Scanner console = new Scanner(System.in);
-		int id = console.nextInt();
-		Employee employee = employeeService.searchEmployee(id);
-		System.out.println(employee);
+		try {
+			if (console.hasNextInt()) {
+				int id = console.nextInt();
+				Employee employee = employeeService.searchEmployee(id);
+				System.out.println(employee);
+			} else {
+				System.out.println("Enter an Integer");
+			}
+		} catch (UserNotFoundException e) {
+			System.out.println(e);
+		}
 
 	}
 
@@ -123,10 +133,13 @@ public class EmployeeMenu extends EmployeeClient {
 	 * 
 	 */
 	private static void searchByMarriage() {
-		Scanner console = new Scanner(System.in);
 		MaritalStatus status = InputMethods.inputMaritalStatus();
-		List<Employee> list = employeeService.searchEmployee(status);
-		displayList(list);
+		try {
+			List<Employee> list = employeeService.searchEmployee(status);
+			displayList(list);
+		} catch (UserNotFoundException e) {
+			System.out.println(e);
+		}
 
 	}
 
@@ -134,10 +147,14 @@ public class EmployeeMenu extends EmployeeClient {
 	 * 
 	 */
 	private static void searchByGrade() {
-		Scanner console = new Scanner(System.in);
 		GradeType gradeType = InputMethods.inputGrade();
-		List<Employee> list = employeeService.searchEmployee(gradeType);
-		displayList(list);
+		List<Employee> list;
+		try {
+			list = employeeService.searchEmployee(gradeType);
+			displayList(list);
+		} catch (UserNotFoundException e) {
+			System.out.println(e);
+		}
 
 	}
 
@@ -145,10 +162,13 @@ public class EmployeeMenu extends EmployeeClient {
 	 * 
 	 */
 	private static void searchByDepartment() {
-		Scanner console = new Scanner(System.in);
-		int departmentId = InputMethods.inputDepartmentId();
-		List<Employee> list = employeeService.searchEmployee(new Department(departmentId, ""));
-		displayList(list);
+		try {
+			int departmentId = InputMethods.inputDepartmentId();
+			List<Employee> list = employeeService.searchEmployee(new Department(departmentId, ""));
+			displayList(list);
+		} catch (UserNotFoundException e) {
+			System.out.println(e);
+		}
 	}
 
 	/**
@@ -166,8 +186,12 @@ public class EmployeeMenu extends EmployeeClient {
 			else
 				System.out.println("Enter a valid name");
 		}
-		List<Employee> list = employeeService.searchEmployee(firstName);
-		displayList(list);
+		try {
+			List<Employee> list = employeeService.searchEmployee(firstName);
+			displayList(list);
+		} catch (UserNotFoundException e) {
+			System.out.println(e);
+		}
 
 	}
 

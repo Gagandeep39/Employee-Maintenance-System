@@ -41,70 +41,70 @@ public class EmployeeServiceImpl extends UserServiceImpl implements EmployeeServ
 	}
 
 	@Override
-	public Employee searchEmployee(int empId) {
+	public Employee searchEmployee(int empId) throws UserNotFoundException {
 		Employee employee = employeeDao.searchEmployee(empId);
-		try {
+//		try {
 			if (employee == null)
 				throw new UserNotFoundException();
 			else
 				return employee;
-		} catch (UserNotFoundException e) {
-			System.out.println(e);
-		}
-		return employee;
+//		} catch (UserNotFoundException e) {
+//			System.out.println(e);
+//		}
+//		return employee;
 		
 	}
 
 	@Override
-	public List<Employee> searchEmployee(String name) {
+	public List<Employee> searchEmployee(String name) throws UserNotFoundException {
 		List<Employee> list = employeeDao.searchEmployee(name);
-		try {
+//		try {
 			if(list.size()==0)
 				throw new UserNotFoundException("No employees with name: " + name + " found.");
 			else return list;
-		} catch (UserNotFoundException e) {
-			System.out.println(e.getMessage()); 
-		}
-		return list;
+//		} catch (UserNotFoundException e) {
+//			System.out.println(e.getMessage()); 
+//		}
+//		return list;
 	}
 
 	@Override
-	public List<Employee> searchEmployee(Department d) {
+	public List<Employee> searchEmployee(Department d) throws UserNotFoundException{
 		List<Employee> list = employeeDao.searchEmployee(d);
-		try {
+//		try {
 			if(list.size()==0)
 				throw new UserNotFoundException("No employees with Department: " + d.getDepartmentId() + " found.");
 			return list;
-		} catch (UserNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
-		return list;
+//		} catch (UserNotFoundException e) {
+//			System.out.println(e.getMessage());
+//		}
+//		return list;
 	}
 
 	@Override
-	public List<Employee> searchEmployee(GradeType g) {
+	public List<Employee> searchEmployee(GradeType g) throws UserNotFoundException {
 		List<Employee> list = employeeDao.searchEmployee(g);
-		try {
+//		try {
 			if(list.size()==0)
 				throw new UserNotFoundException("No employees with GradeType: " + g + " found.");
 			return list;
-		} catch (UserNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
-		return list;
+//		} catch (UserNotFoundException e) {
+//			System.out.println(e.getMessage());
+//		}
+//		return list;
 	}
 
 	@Override
-	public List<Employee> searchEmployee(MaritalStatus m) {
+	public List<Employee> searchEmployee(MaritalStatus m) throws UserNotFoundException {
 		List<Employee> list = employeeDao.searchEmployee(m);
-		try {
+//		try {
 			if(list.size()==0)
 				throw new UserNotFoundException("No employees with Marital Status: " + m + " found.");
 			return list;
-		} catch (UserNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
-		return list;
+//		} catch (UserNotFoundException e) {
+//			System.out.println(e.getMessage());
+//		}
+//		return list;
 	}
 
 	@Override
