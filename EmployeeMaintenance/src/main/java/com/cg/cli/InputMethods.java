@@ -6,6 +6,8 @@ import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.sound.midi.SysexMessage;
+
 import com.cg.beans.LeaveHistory;
 import com.cg.enums.Designation;
 import com.cg.enums.Gender;
@@ -88,7 +90,7 @@ public class InputMethods {
 		Scanner console = new Scanner(System.in);
 		String address = "";
 		System.out.print("Enter Home Address: ");
-		address = console.next();
+		address = console.nextLine();
 		return address;
 	}
 
@@ -97,29 +99,32 @@ public class InputMethods {
 	 */
 	public static MaritalStatus inputMaritalStatus() {
 		Scanner console = new Scanner(System.in);
-
 		System.out.println("Marital Status Options are as follows");
 		int i = 1;
 		for (MaritalStatus g : MaritalStatus.values())
 			System.out.println(i++ + ". " + g);
 		while (true) {
-			System.out.print("Select Marital Status: ");
-			int op = console.nextInt();
-			switch (op) {
-			case 1:
-				return MaritalStatus.Single;
-			case 2:
-				return MaritalStatus.Married;
-			case 3:
-				return MaritalStatus.Divorced;
-			case 4:
-				return MaritalStatus.Separated;
-			case 5:
-				return MaritalStatus.Widowed;
+			try {
+				System.out.print("Select Marital Status: ");
+				int op = console.nextInt();
+				switch (op) {
+				case 1:
+					return MaritalStatus.Single;
+				case 2:
+					return MaritalStatus.Married;
+				case 3:
+					return MaritalStatus.Divorced;
+				case 4:
+					return MaritalStatus.Separated;
+				case 5:
+					return MaritalStatus.Widowed;
 
-			default:
-				System.out.println("Select a Valid Marital Status");
-				break;
+				default:
+					System.out.println("Select a Valid Marital Status");
+					break;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Enter Integer Value");
 			}
 		}
 	}
@@ -129,18 +134,22 @@ public class InputMethods {
 	 */
 	public static Gender inputGender() {
 		Scanner console = new Scanner(System.in);
+		System.out.println("Gender 1. Male, 2. Female");
 		while (true) {
-			System.out.println("Gender 1. Male, 2. Femal");
-			System.out.print("Enter Selection: ");
-			int op = console.nextInt();
-			switch (op) {
-			case 1:
-				return Gender.M;
-			case 2:
-				return Gender.F;
-			default:
-				System.out.println("Enter a valid value");
-				break;
+			try {
+				System.out.print("Enter Selection: ");
+				int op = console.nextInt();
+				switch (op) {
+				case 1:
+					return Gender.M;
+				case 2:
+					return Gender.F;
+				default:
+					System.out.println("Enter a valid value");
+					break;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Enter Integer Value");
 			}
 
 		}
@@ -173,25 +182,29 @@ public class InputMethods {
 		for (Designation g : Designation.values())
 			System.out.println(i++ + ". " + g);
 		while (true) {
-			System.out.print("Select Designation: ");
-			int op = console.nextInt();
-			switch (op) {
-			case 1:
-				return Designation.Trainee;
-			case 2:
-				return Designation.Manager;
-			case 3:
-				return Designation.Assistant;
-			case 4:
-				return Designation.Tester;
-			case 5:
-				return Designation.Developer;
-			case 6:
-				return Designation.DataScientist;
+			try {
+				System.out.print("Select Designation: ");
+				int op = console.nextInt();
+				switch (op) {
+				case 1:
+					return Designation.Trainee;
+				case 2:
+					return Designation.Manager;
+				case 3:
+					return Designation.Assistant;
+				case 4:
+					return Designation.Tester;
+				case 5:
+					return Designation.Developer;
+				case 6:
+					return Designation.DataScientist;
 
-			default:
-				System.out.println("Select a Valid Designation");
-				break;
+				default:
+					System.out.println("Select a Valid Designation");
+					break;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Enter an Integer Value");
 			}
 		}
 	}
@@ -207,28 +220,33 @@ public class InputMethods {
 		for (GradeType g : GradeType.values())
 			System.out.println(i++ + "." + g);
 		while (true) {
-			System.out.print("Select Grade: ");
-			int op = console.nextInt();
-			switch (op) {
-			case 1:
-				return GradeType.M1;
-			case 2:
-				return GradeType.M2;
-			case 3:
-				return GradeType.M3;
-			case 4:
-				return GradeType.M4;
-			case 5:
-				return GradeType.M5;
-			case 6:
-				return GradeType.M6;
-			case 7:
-				return GradeType.M7;
+			try {
+				System.out.print("Select Grade: ");
+				int op = console.nextInt();
+				switch (op) {
+				case 1:
+					return GradeType.M1;
+				case 2:
+					return GradeType.M2;
+				case 3:
+					return GradeType.M3;
+				case 4:
+					return GradeType.M4;
+				case 5:
+					return GradeType.M5;
+				case 6:
+					return GradeType.M6;
+				case 7:
+					return GradeType.M7;
 
-			default:
-				System.out.println("Select a Valid grade");
-				break;
+				default:
+					System.out.println("Select a Valid grade");
+					break;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Enter an Integer Value");
 			}
+			
 		}
 	}
 
@@ -239,10 +257,15 @@ public class InputMethods {
 		int id;
 		Scanner console = new Scanner(System.in);
 		while (true) {
-			System.out.print("Enter Department Id: ");
-			id = console.nextInt();
-			if (AdminService.validateDepartment(id))
-				break;
+			try {
+				System.out.print("Enter Department Id: ");
+				id = console.nextInt();
+				if (AdminService.validateDepartment(id))
+					break;
+			} catch (InputMismatchException e) {
+				System.out.println("Department ID must be an Integer value");
+			}
+			
 		}
 		return id;
 	}
