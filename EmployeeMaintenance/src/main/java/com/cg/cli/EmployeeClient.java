@@ -36,6 +36,7 @@ import com.cg.service.UserServiceImpl;
  * TODO - Add validation for 6 digit Employee ID - DONE (since Autogen)
  * TODO - Create test cases in JUNIT
  * TODO - Try implementing Singleton for Scanner
+ * TODO - try using username for login
  */
 
 
