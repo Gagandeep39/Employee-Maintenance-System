@@ -77,7 +77,6 @@ public class EmployeeClient {
 			System.out.println("*********Login System*********");
 			System.out.print("Enter Username: ");
 			String uname = console.next();
-
 			System.out.print("Enter Password: ");
 			password = console.next();
 			user = userService.login(uname, password);
