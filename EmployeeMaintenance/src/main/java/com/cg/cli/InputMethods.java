@@ -366,7 +366,7 @@ public class InputMethods {
 		LocalDate d = null;
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
-			System.out.println("Enter Start date (yyyy-mm-dd): ");
+			System.out.print("Enter Start date (yyyy-mm-dd): ");
 			String dob = scanner.next();
 			if (AdminService.validateDate(dob)) { // needs to be fixed
 				d = LocalDate.parse(dob);
