@@ -83,7 +83,19 @@ public class DataRepository {
 
 		LeaveHistory l1 = new LeaveHistory(e2.getEmpId(), 12, 3, LocalDate.parse("2020-04-12"),
 				LocalDate.parse("2020-04-15"), LeaveStatus.Applied);
+		LeaveHistory l2 = new LeaveHistory(e2.getEmpId(), 9, 3, LocalDate.parse("2020-04-18"),
+				LocalDate.parse("2020-04-21"), LeaveStatus.Applied);
+		LeaveHistory l3 = new LeaveHistory(e3.getEmpId(), 12, 3, LocalDate.parse("2020-05-01"),
+				LocalDate.parse("2020-04-04"), LeaveStatus.Applied);
+		LeaveHistory l4 = new LeaveHistory(e3.getEmpId(), 9, 3, LocalDate.parse("2020-06-20"),
+				LocalDate.parse("2020-06-23"), LeaveStatus.Applied);
+		LeaveHistory l5 = new LeaveHistory(e3.getEmpId(), 6, 3, LocalDate.parse("2020-07-12"),
+				LocalDate.parse("2020-07-15"), LeaveStatus.Applied);
 		leaveMap.put(l1.getLeaveId(), l1);
+		leaveMap.put(l2.getLeaveId(), l2);
+		leaveMap.put(l3.getLeaveId(), l3);
+		leaveMap.put(l4.getLeaveId(), l4);
+		leaveMap.put(l5.getLeaveId(), l5);
 
 	}
 
