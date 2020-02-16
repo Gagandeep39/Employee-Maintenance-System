@@ -79,16 +79,19 @@ public class ManagerServiceImpl extends EmployeeServiceImpl implements ManagerSe
 
 		HashMap<Integer, LeaveHistory> map = leaveDao.showAllLeaves();
 		HashMap<Integer, Employee> employeeMap = employeeDao.showAllEmployees();
-//		System.out.println("Leave sizeL " + map.size() + " Employeemap" + employeeMap.size());
 		HashMap<Integer, LeaveHistory> leaveList = new HashMap<Integer, LeaveHistory>();
-		List<Employee> employees = employeeMap.values().stream().filter(e -> e.getManagerId() == managerId)
-				.collect(Collectors.toList());
-//		System.out.println("employeeList: " +employees.size());
-		for (Employee employee : employees) {
-			for (LeaveHistory leave : map.values()) {
-				if (employee.getEmpId() == leave.getEmpId())
-					leaveList.put(leave.getLeaveId(), leave);
+		if(map.size()!=0 && employeeMap.size()!=0) {
+			List<Employee> employees = employeeMap.values().stream().filter(e -> e.getManagerId() == managerId)
+					.collect(Collectors.toList());
+//			System.out.println("employeeList: " +employees.size());
+			for (Employee employee : employees) {
+				for (LeaveHistory leave : map.values()) {
+					if (employee.getEmpId() == leave.getEmpId())
+						leaveList.put(leave.getLeaveId(), leave);
+				}
 			}
+		}else {
+			System.out.println("No leaves Found");
 		}
 //		System.out.println("leavelist: " + leaveList.size());
 //		System.out.println("Leaves Requested by Your Subordinates are");
