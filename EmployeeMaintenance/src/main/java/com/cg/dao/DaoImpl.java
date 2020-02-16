@@ -78,7 +78,7 @@ public class DaoImpl implements UserDao, EmployeeDao, LeaveDao {
 	}
 
 	public List<Employee> searchEmployee(String name) {
-		return employeeMap.values().stream().filter(e->e.getEmpFirstName().contains(name)).collect(Collectors.toList());
+		return employeeMap.values().stream().filter(e->e.getEmpFirstName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
 	}
 
 	/**
