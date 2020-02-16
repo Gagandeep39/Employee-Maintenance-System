@@ -116,6 +116,7 @@ public class EmployeeMenu extends EmployeeClient {
 
 		Scanner console = new Scanner(System.in);
 		try {
+			System.out.print("Enter ID: ");
 			if (console.hasNextInt()) {
 				int id = console.nextInt();
 				Employee employee = employeeService.searchEmployee(id);
