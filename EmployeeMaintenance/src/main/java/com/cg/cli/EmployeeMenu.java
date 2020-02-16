@@ -24,14 +24,15 @@ public class EmployeeMenu extends EmployeeClient {
 	 * 
 	 */
 	public static void showEmployeeMenu(int empId) {
-		Scanner console = new Scanner(System.in);
 		while (true) {
+			Scanner console = new Scanner(System.in);
 			System.out.println("*********Employee Menu*********");
 			System.out.println("1. Search for Employee");
 			System.out.println("2. Apply For Leave");
 			System.out.println("3. Show All my Leaves");
 			System.out.println("4. Log Out");
 			System.out.println("5. Exit");
+			if(console.hasNextInt()) {
 			int op = console.nextInt();
 			switch (op) {
 			case 1:
@@ -54,6 +55,7 @@ public class EmployeeMenu extends EmployeeClient {
 			default:
 				break;
 			}
+		}else System.out.println("Enter an Integer Value");
 		}
 
 	}

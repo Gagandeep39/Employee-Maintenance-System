@@ -25,8 +25,8 @@ public class AdminMenu extends EmployeeClient{
 	 * 
 	 */
 	static void showAdminMenu() {
-		Scanner console = new Scanner(System.in);
 		while (true) {
+			Scanner console = new Scanner(System.in);
 			System.out.println("*********ADMIN Menu*********");
 			System.out.println("1. Add Employee");
 			System.out.println("2. Modify Employee Details");
@@ -35,6 +35,7 @@ public class AdminMenu extends EmployeeClient{
 			System.out.println("5. Log Out");
 			System.out.println("6. Exit");
 			System.out.print("Input: ");
+			if(console.hasNextInt()) {
 			int op = console.nextInt();
 			switch (op) {
 			case 1:
@@ -60,6 +61,9 @@ public class AdminMenu extends EmployeeClient{
 
 			default:
 				break;
+			}
+			}else {
+				System.out.println("Enter an Integer Value");
 			}
 
 		}

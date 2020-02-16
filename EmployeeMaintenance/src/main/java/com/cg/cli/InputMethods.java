@@ -48,21 +48,24 @@ public class InputMethods {
 	 * @return
 	 */
 	public static int inputManagerId() {
-		Scanner console = new Scanner(System.in);
 		int managerId = 0;
 		while (true) {
-			try {
+			Scanner console = new Scanner(System.in);
+//			try {
 				System.out.print("Enter Manager Id: ");
-				managerId = console.nextInt();
+				if(console.hasNextInt()) {
+					managerId = console.nextInt();
 				if (managerId == 0)
 					return managerId;
-				if (AdminService.validateManager(managerId))
+				else if (AdminService.validateManager(managerId))
 					return managerId;
 				else
 					System.out.println("Enter a valid Manager ID or 0 for no Manager");
-			} catch (InputMismatchException e) {
-				return managerId = 0;
-			}
+				}else 
+					System.out.println("Enter an Integer Value");
+//			} catch (InputMismatchException e) {
+//				return managerId = 0;
+//			}
 		}
 	}
 
@@ -98,14 +101,15 @@ public class InputMethods {
 	 * @return
 	 */
 	public static MaritalStatus inputMaritalStatus() {
-		Scanner console = new Scanner(System.in);
 		System.out.println("Marital Status Options are as follows");
 		int i = 1;
 		for (MaritalStatus g : MaritalStatus.values())
 			System.out.println(i++ + ". " + g);
 		while (true) {
-			try {
-				System.out.print("Select Marital Status: ");
+			Scanner console = new Scanner(System.in);
+//			try {
+			System.out.print("Select Marital Status: ");
+			if (console.hasNextInt()) {
 				int op = console.nextInt();
 				switch (op) {
 				case 1:
@@ -123,9 +127,11 @@ public class InputMethods {
 					System.out.println("Select a Valid Marital Status");
 					break;
 				}
-			} catch (InputMismatchException e) {
-				System.out.println("Enter Integer Value");
-			}
+			} else
+				System.out.println("Enter an Integer");
+//			} catch (InputMismatchException e) {
+//				System.out.println("Enter Integer Value");
+//			}
 		}
 	}
 
@@ -133,11 +139,12 @@ public class InputMethods {
 	 * @return
 	 */
 	public static Gender inputGender() {
-		Scanner console = new Scanner(System.in);
 		System.out.println("Gender 1. Male, 2. Female");
 		while (true) {
-			try {
-				System.out.print("Enter Selection: ");
+			Scanner console = new Scanner(System.in);
+//			try {
+			System.out.print("Enter Selection: ");
+			if (console.hasNextInt()) {
 				int op = console.nextInt();
 				switch (op) {
 				case 1:
@@ -148,9 +155,11 @@ public class InputMethods {
 					System.out.println("Enter a valid value");
 					break;
 				}
-			} catch (InputMismatchException e) {
-				System.out.println("Enter Integer Value");
-			}
+			} else
+				System.out.println("Enter an Integer Value");
+//			} catch (InputMismatchException e) {
+//				System.out.println("Enter Integer Value");
+//			}
 
 		}
 	}
@@ -160,13 +169,20 @@ public class InputMethods {
 	 * @return
 	 */
 	public static int inputSalary(GradeType empGrade) {
-		Scanner console = new Scanner(System.in);
 		int sal;
 		while (true) {
+//			try {
+			Scanner console = new Scanner(System.in);
 			System.out.print("Enter Salary: ");
-			sal = console.nextInt();
-			if (AdminService.validateBasic(sal, empGrade))
-				break;
+			if (console.hasNextInt()) {
+				sal = console.nextInt();
+				if (AdminService.validateBasic(sal, empGrade))
+					break;
+			} else
+				System.out.println("Enter an Integer value");
+//			} catch (InputMismatchException e) {
+//				System.out.println("Input must be an integer");
+//			}
 		}
 		return sal;
 	}
@@ -175,15 +191,16 @@ public class InputMethods {
 	 * @return
 	 */
 	public static Designation inputDesignation() {
-		Scanner console = new Scanner(System.in);
 
 		System.out.println("Grade Options are as follows");
 		int i = 1;
 		for (Designation g : Designation.values())
 			System.out.println(i++ + ". " + g);
 		while (true) {
-			try {
-				System.out.print("Select Designation: ");
+			Scanner console = new Scanner(System.in);
+//			try {
+			System.out.print("Select Designation: ");
+			if (console.hasNextInt()) {
 				int op = console.nextInt();
 				switch (op) {
 				case 1:
@@ -203,9 +220,11 @@ public class InputMethods {
 					System.out.println("Select a Valid Designation");
 					break;
 				}
-			} catch (InputMismatchException e) {
-				System.out.println("Enter an Integer Value");
-			}
+			} else
+				System.out.println("Enter Integer value");
+//			} catch (InputMismatchException e) {
+//				System.out.println("Enter an Integer Value");
+//			}
 		}
 	}
 
@@ -213,15 +232,16 @@ public class InputMethods {
 	 * @return
 	 */
 	public static GradeType inputGrade() {
-		Scanner console = new Scanner(System.in);
 
 		System.out.println("Grade Options are as follows");
 		int i = 1;
 		for (GradeType g : GradeType.values())
 			System.out.println(i++ + "." + g);
 		while (true) {
-			try {
-				System.out.print("Select Grade: ");
+			Scanner console = new Scanner(System.in);
+//			try {
+			System.out.print("Select Grade: ");
+			if (console.hasNextInt()) {
 				int op = console.nextInt();
 				switch (op) {
 				case 1:
@@ -243,10 +263,12 @@ public class InputMethods {
 					System.out.println("Select a Valid grade");
 					break;
 				}
-			} catch (InputMismatchException e) {
-				System.out.println("Enter an Integer Value");
-			}
-			
+			} else
+				System.out.println("Enter Integer Value");
+//			} catch (InputMismatchException e) {
+//				System.out.println("Enter an Integer Value");
+//			}
+
 		}
 	}
 
@@ -255,17 +277,21 @@ public class InputMethods {
 	 */
 	public static int inputDepartmentId() {
 		int id;
-		Scanner console = new Scanner(System.in);
 		while (true) {
+			Scanner console = new Scanner(System.in);
 			try {
 				System.out.print("Enter Department Id: ");
-				id = console.nextInt();
-				if (AdminService.validateDepartment(id))
-					break;
+				if (console.hasNextInt()) {
+					id = console.nextInt();
+					if (AdminService.validateDepartment(id))
+						break;
+				} else
+					System.out.println("Enter an Integer");
 			} catch (InputMismatchException e) {
 				System.out.println("Department ID must be an Integer value");
+				console.close();
 			}
-			
+
 		}
 		return id;
 	}
@@ -277,13 +303,13 @@ public class InputMethods {
 		LocalDate d = null;
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
-				System.out.println("Enter Date of Birth: ");
-				String dob = scanner.next();
-				if(AdminService.validateDate(dob)) {
-					d = LocalDate.parse(dob);
-					if(AdminService.validateAge(d))
-						break;
-				}
+			System.out.print("Enter Date of Birth: ");
+			String dob = scanner.next();
+			if (AdminService.validateDate(dob)) {
+				d = LocalDate.parse(dob);
+				if (AdminService.validateAge(d))
+					break;
+			}
 		}
 		return d;
 
@@ -342,16 +368,16 @@ public class InputMethods {
 		while (true) {
 			System.out.println("Enter Start date (yyyy-mm-dd): ");
 			String dob = scanner.next();
-			if (AdminService.validateDate(dob)) {	//needs to be fixed
-			d = LocalDate.parse(dob);
-			if (!LocalDate.now().isAfter(d))
-				break;
-			else
-				System.out.println("Input date must be after Today's date");
+			if (AdminService.validateDate(dob)) { // needs to be fixed
+				d = LocalDate.parse(dob);
+				if (!LocalDate.now().isAfter(d))
+					break;
+				else
+					System.out.println("Input date must be after Today's date");
 			}
 		}
 		return d;
-		
+
 	}
 
 	/**

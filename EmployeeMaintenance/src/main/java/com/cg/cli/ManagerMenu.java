@@ -21,8 +21,8 @@ public class ManagerMenu extends EmployeeMenu {
 	 * 
 	 */
 	public static void showManagerMenu(int empId) {
-		Scanner console = new Scanner(System.in);
 		while (true) {
+			Scanner console = new Scanner(System.in);
 			System.out.println("*********Manager Menu*********");
 			System.out.println("1. Search for Employee");
 			System.out.println("2. Apply For Leave");
@@ -31,34 +31,37 @@ public class ManagerMenu extends EmployeeMenu {
 			System.out.println("5. Approve Leave");
 			System.out.println("6. Log Out");
 			System.out.println("7. Exit");
-			int op = console.nextInt();
-			switch (op) {
-			case 1:
-				searchEmployee(empId);
-				break;
-			case 2:
-				applyForLeave(empId);
-				break;
-			case 3:
-				showAllMyLeaves(empId);
-				break;
-			case 4:
-				showAllSubEmployeesLeaves(empId);
-				break;
-			case 5:
-				approveLeave(empId);
-				break;
-			case 6:
-				System.out.println("Logging Out");
-				loginSystem();
-				break;
-			case 7:
-				System.out.println("Powering Off...");
-				System.exit(0);
-				break;
-			default:
-				break;
-			}
+			if (console.hasNextInt()) {
+				int op = console.nextInt();
+				switch (op) {
+				case 1:
+					searchEmployee(empId);
+					break;
+				case 2:
+					applyForLeave(empId);
+					break;
+				case 3:
+					showAllMyLeaves(empId);
+					break;
+				case 4:
+					showAllSubEmployeesLeaves(empId);
+					break;
+				case 5:
+					approveLeave(empId);
+					break;
+				case 6:
+					System.out.println("Logging Out");
+					loginSystem();
+					break;
+				case 7:
+					System.out.println("Powering Off...");
+					System.exit(0);
+					break;
+				default:
+					break;
+				}
+			} else
+				System.out.println("Enter Integer Value");
 		}
 
 	}
@@ -77,9 +80,9 @@ public class ManagerMenu extends EmployeeMenu {
 				System.out.println(l);
 			});
 		}
-		
+
 		return leaveHisoryList;
-		
+
 	}
 
 	/**
@@ -90,25 +93,25 @@ public class ManagerMenu extends EmployeeMenu {
 		int leaveId = 0;
 		HashMap<Integer, LeaveHistory> leaveHisoryList = showAllSubEmployeesLeaves(managerId);
 
-		if(leaveHisoryList.size()!=0)
-		while (true) {
-			LeaveStatus status ;
-			Scanner console = new Scanner(System.in);
-			try {
-				System.out.println("Enter Leave ID: ");
-				leaveId = console.nextInt();
-				if (leaveHisoryList.get(leaveId) != null) {
-					status = inputLeaveStatus();
-					managerService.approveLeave(leaveId, status);
-					break;
-				} else
-					System.out.println("Enter a LeaveID of your Employee");
+		if (leaveHisoryList.size() != 0)
+			while (true) {
+				LeaveStatus status;
+				Scanner console = new Scanner(System.in);
+				try {
+					System.out.println("Enter Leave ID: ");
+					leaveId = console.nextInt();
+					if (leaveHisoryList.get(leaveId) != null) {
+						status = inputLeaveStatus();
+						managerService.approveLeave(leaveId, status);
+						break;
+					} else
+						System.out.println("Enter a LeaveID of your Employee");
 
-			} catch (InputMismatchException e) {
-				System.out.println("Enter an Integer Value");
+				} catch (InputMismatchException e) {
+					System.out.println("Enter an Integer Value");
+				}
+
 			}
-
-		}
 
 	}
 
@@ -119,15 +122,18 @@ public class ManagerMenu extends EmployeeMenu {
 		System.out.println("Select Leave Status");
 		System.out.println("1. Approve");
 		System.out.println("2. Reject");
-		while(true) {
+		while (true) {
 			Scanner scanner = new Scanner(System.in);
 			System.out.println("Enter Status: ");
 			int op = scanner.nextInt();
 			switch (op) {
-			case 1: return LeaveStatus.Approved;
-			case 2: return LeaveStatus.Rejected;
+			case 1:
+				return LeaveStatus.Approved;
+			case 2:
+				return LeaveStatus.Rejected;
 
-			default:System.out.println("Enter a valid status");
+			default:
+				System.out.println("Enter a valid status");
 				break;
 			}
 		}
